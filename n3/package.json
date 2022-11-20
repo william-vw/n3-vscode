@@ -1,0 +1,25 @@
+{
+  "name": "n3",
+  "displayName": "n3",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.73.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "n3",
+      "aliases": ["N3", "n3"],
+      "extensions": [".n3"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "n3",
+      "scopeName": "source.n3",
+      "path": "./syntaxes/n3.tmLanguage.json"
+    }]
+  }
+}
