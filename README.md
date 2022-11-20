@@ -1,8 +1,3 @@
-## Dependencies
-Clone & install [https://github.com/william-vw/vscode-textmate](https://github.com/william-vw/vscode-textmate)  
-(fork of original; added 'inspect-terse.ts' for simpler test output)
-
-
 ## Run
 ```
 cd vscode-textmate  

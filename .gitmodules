@@ -1,0 +1,3 @@
+[submodule "vscode-textmate"]
+	path = vscode-textmate
+	url = https://github.com/william-vw/vscode-textmate
