@@ -1,4 +1,5 @@
 ## Dependencies
+Install fork of vscode-textmate:
 ```
 $ cd vscode-textmate
 $ git submodule init  
