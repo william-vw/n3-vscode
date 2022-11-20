@@ -1,0 +1,186 @@
+fileTypes:
+      - sparql
+keyEquivalent: ^~N
+name: SPARQL
+patterns:
+      - captures:
+              "1":
+                    name: constant.language
+              "2":
+                    name: meta.tag
+        match: ^\s*((?i:BASE))\s+(<[^ \>]*>)
+        name: meta.preprocessor.base.n3
+      - captures:
+              "1":
+                    name: constant.language
+              "2":
+                    name: constant
+              "3":
+                    name: meta.tag
+        match: ^\s*((?i:PREFIX))\s+([a-zA-Z0-9]*:)+\s+(<[^ \>]*>)
+        name: meta.preprocessor.prefix.n3
+      - match: \b(?i:WHERE|OPTIONAL|GRAPH|FILTER|ORDER BY|UNION)\b
+        name: keyword.other
+      - captures:
+              "1":
+                    name: keyword.other
+              "2":
+                    name: variable.language
+              "3":
+                    name: comment.line.number-sign.n3
+              "4":
+                    name: invalid
+        match: ^\s*((?i:SELECT(?i:\s*DISTINCT)?))\s*((?:\s*?(?:\?|\$)[a-zA-z0-9_]+)+|(?:\*))\s+(\#.*$\n?)?(.*)?
+        name: keyword.select
+      - captures:
+              "1":
+                    name: keyword.other
+              "2":
+                    name: meta.tag
+        match: ^\s*((?i:FROM)(?i:\s*NAMED)?)\s+((\b[a-zA-Z0-9\:\-_]+\b)|(<[^ \>]*>))
+        name: keyword
+      - begin: "{"
+        beginCaptures:
+              "1":
+                    name: keyword.other
+        end: "}"
+        name: whereClause
+        patterns:
+              - include: "#filter"
+              - include: "#optional"
+              - include: "#graph"
+              - include: "#statement"
+      - captures:
+              "1":
+                    name: keyword.other
+              "2":
+                    name: constant
+              "3":
+                    name: comment.line.number-sign.n3
+              "4":
+                    name: invalid
+        match: ^\s*((?i:LIMIT|OFFSET))\s+([0-9]+)?\s*(#.*)?(.*)$
+        name: solutionModifier
+      - captures:
+              "1":
+                    name: punctuation.definition.comment.n3
+        match: (#).*$\n?
+        name: comment.line.number-sign.n3
+repository:
+      PredObjM:
+            begin: ([a-zA-Z0-9\:\-_]+|<.*>|(\?[a-zA-z0-9_]+))(\s|(?=\())
+            beginCaptures:
+                  "1":
+                        name: meta.statement.predicate.n3
+                  "2":
+                        name: variable.other
+            end: ;|(?=\.|\}|\]|FILTER|OPTIONAL)
+            name: predicateObject
+            patterns:
+                  - include: "#comment"
+                  - include: "#var"
+                  - include: "#tripleQuote"
+                  - include: "#objlistM"
+                  - include: "#typedliteral"
+                  - include: "#anonObj"
+                  - include: "#qname"
+                  - include: "#uri"
+      anonObj:
+            begin: \[
+            end: \]
+            name: meta.statement.object.anon.n3
+            patterns:
+                  - include: "#comment"
+                  - include: "#PredObjM"
+      comment:
+            captures:
+                  "1":
+                        name: punctuation.definition.comment.n3
+            match: (#).*$\n?
+            name: comment.line.number-sign.n3
+      filter:
+            captures:
+                  "1":
+                        name: keyword.other
+            match: ((?i:FILTER))\s*(regex)?\(.*\)
+            name: constraint
+      graph:
+            captures:
+                  "1":
+                        name: keyword.other
+                  "2":
+                        name: variable.language
+                  "3":
+                        name: meta.statement.subject.n3
+                  "4":
+                        name: comment.line.number-sign.n3
+                  "5":
+                        name: invalid
+            match: ^\s*((?i:GRAPH))\s*(?:((?:\?|\$)[a-zA-z0-9_]+)|([a-zA-Z:_\-]*))\s*(\#.*$\n?)?([^\{]*)?
+            name: keyword.graph
+      objlistM:
+            begin: \(
+            end: \)
+            name: meta.statement.object.list.n3
+            patterns:
+                  - include: "#comment"
+                  - include: "#objlistM"
+                  - include: "#tripleQuote"
+                  - include: "#typedliteral"
+                  - include: "#anonObj"
+                  - include: "#qname"
+                  - include: "#uri"
+                  - include: "#var"
+      optional:
+            captures:
+                  "1":
+                        name: keyword.other
+            match: ((?i:OPTIONAL))\s*(?=\{?)
+            name: optional
+      qname:
+            match: (\b[a-zA-Z0-9\:\-_]+\b)\s*
+            name: meta.statement.object.n3
+      statement:
+            begin: ([a-zA-Z0-9\:\-_]+|\[\]|<[^ \>]*>|(\?[a-zA-z0-9_]+))\s*
+            beginCaptures:
+                  "1":
+                        name: meta.statement.subject.n3
+                  "2":
+                        name: variable.other
+            end: \.|(?=\}|FILTER|OPTIONAL)
+            name: meta.statement.n3
+            patterns:
+                  - include: "#comment"
+                  - include: "#PredObjM"
+      tripleQuote:
+            begin: '"""'
+            end: '"""(\^\^([a-zA-z\-\:_]+|<.*>)|@[a-z]+)?\s*([a-zA-Z0-9]*)?'
+            endCaptures:
+                  "1":
+                        name: constant
+                  "2": {}
+                  "3":
+                        name: invalid
+            name: meta.statement.object.literal.n3
+      typedliteral:
+            captures:
+                  "1":
+                        name: meta.statement.object.literal.n3
+                  "2":
+                        name: constant
+                  "3": {}
+                  "4":
+                        name: invalid
+            match: ("[^"]*")(\^\^([a-zA-z\-\:_]+|<.*>)|@[a-z]+)?[\s,]*([^\.\];\)\}]*)?
+            name: meta.statement.object.literal.n3
+      uri:
+            match: <(([a-zA-Z][0-9a-zA-Z]*:)?/{0,2}[0-9a-zA-Z;/?:@&=+$\.\-_!~*()%]+)?(\#[0-9a-zA-Z;/?:@&=+$\.\-_!~*%]+)?>
+            name: meta.tag
+      var:
+            captues:
+                  "1":
+                        name: variable.other
+            match: \?[a-zA-z0-9_]+
+            name: variable.language
+scopeName: source.sparql
+uuid: FFF74C83-C3BE-4CEB-A9BC-99DB3DE9E9DC

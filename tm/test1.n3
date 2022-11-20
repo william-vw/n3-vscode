@@ -1,0 +1,6 @@
+@prefix : <http://swot.sisinflab.poliba.it/onto/rheumatology#> .
+
+:patientA rdfs:label """
+hello\"
+world;
+""" .
