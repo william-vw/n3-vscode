@@ -32,8 +32,8 @@
 					"type": "string",
 					"default": "out.n3",
 					"description": "Define the path of the output file."
-				}				
-			}			
+				}
+			}
 		},
 		"commands": [
 			{
@@ -58,7 +58,7 @@
 		"glob": "7.1.6",
 		"mocha": "^10.1.0",
 		"tslint": "^6.1.2",
-		"typescript": "^3.8.3",
+		"typescript": "^4.9.3",
 		"vscode-test": "^1.3.0"
 	},
 	"dependencies": {

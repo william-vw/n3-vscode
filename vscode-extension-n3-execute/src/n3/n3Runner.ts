@@ -34,7 +34,7 @@ export class Runner {
                     if (workspace.workspaceFolders) {
                         // open the output file
                         let configuration = workspace.getConfiguration("n3");
-                        let outputFile = configuration.get<string>("outputFileName");                                                  
+                        let outputFile = configuration.get<string>("outputFileName")!;                                                  
                         let outputPath = join(workspace.workspaceFolders[0].uri.fsPath, outputFile);
                         let document = await workspace.openTextDocument(outputPath);
                         await window.showTextDocument(document, ViewColumn.Beside);
