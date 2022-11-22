@@ -19,7 +19,7 @@ function getN3ExecuteCommandArgs(execute: N3Execute): string[] {
         "--nope",
         `"${execute.n3}"`,
         "--pass-only-new", 
-        "--output out.n3", 
+        //"--output out.n3", 
         "--quiet"            
     ];
 }
