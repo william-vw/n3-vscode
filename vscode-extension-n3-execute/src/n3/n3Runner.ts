@@ -37,13 +37,19 @@ export class Runner {
                     //turn the buffer into a list of lines and then join them back together
                     let output = Buffer.concat(this._chunks).toString().split("\n")
                     let body = output.join("\n");
-                    var uri = 'http://example.org/'
-                    var mimeType = 'text/turtle'
-                    var store = $rdf.graph()
-                    var EX = $rdf.Namespace(uri)
-                    $rdf.parse(body, store, uri, mimeType)
-                    var out = $rdf.serialize(null, store, uri, mimeType)
-                    n3OutputChannel.append(out);
+                    // get the working directory for the extension
+                    let extensionPath = workspace.getConfiguration("n3").get("extensionPath");
+                    
+                    const python = spawn('python3', ['format_results.py', body.toString()])
+
+                    python.stdout.on('data', (data) => {
+                        //console.log(`stdout: ${data}`);
+                        n3OutputChannel.append(data.toString());
+                    });
+                    python.stderr.on('data', (code) => {
+                        //console.log(`stderr: ${code}`);
+                        window.showInformationMessage(`child process close all stdio with code ${code}`);
+                    });
 
                 } catch (e) {
                     window.showErrorMessage("Failed serializing result to output window");

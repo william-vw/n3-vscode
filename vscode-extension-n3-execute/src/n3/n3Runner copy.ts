@@ -3,8 +3,6 @@ import {ViewColumn, window, workspace} from "vscode";
 import {n3OutputChannel} from "./n3OutputChannel";
 import {join} from "path";
 
-import { N3Parser } from "rdflib";
-
 
 export class Runner {
 
@@ -35,11 +33,18 @@ export class Runner {
                 window.showInformationMessage("N3 Rule successfully executed.");
                 try {
                     //turn the buffer into a list of lines and then join them back together
-                    let output = Buffer.concat(this._chunks).toString().split("\n")
-                    let doc = output.join("\n");
-   
+                    let out = Buffer.concat(this._chunks).toString().split("\n")
+                    let doc = out.join("\n");
+                    const python = spawn('python3', ['format_results.py', doc])
 
-                    n3OutputChannel.append(doc);
+                    python.stdout.on('data', function (data) {
+                        n3OutputChannel.append(data.toString());
+                    });
+                    python.on('close', (code) => {
+                        console.log(`child process close all stdio with code ${code}`);
+                        // send data to browser
+                        //n3OutputChannel.append(dataToSend));
+                    });
 
 
                 } catch (e) {

@@ -63,6 +63,7 @@
 	},
 	"dependencies": {
 		"nyc": "^15.1.0",
+		"python-shell": "^3.0.1",
 		"rdf-parse": "^2.1.1",
 		"rdflib": "^2.2.21",
 		"streamify-string": "^1.0.1"
