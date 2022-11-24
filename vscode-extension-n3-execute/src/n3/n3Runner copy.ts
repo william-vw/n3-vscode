@@ -3,8 +3,8 @@ import {ViewColumn, window, workspace} from "vscode";
 import {n3OutputChannel} from "./n3OutputChannel";
 import {join} from "path";
 
-import $rdf = require('rdflib');
-const store = $rdf.graph()
+import { N3Parser } from "rdflib";
+
 
 export class Runner {
 
@@ -36,16 +36,12 @@ export class Runner {
                 try {
                     //turn the buffer into a list of lines and then join them back together
                     let output = Buffer.concat(this._chunks).toString().split("\n")
-                    let body = output.join("\n");
-                    var uri = 'http://example.org/'
-                    var mimeType = 'text/n3'
-                    var store = $rdf.graph()
-                    var EX = $rdf.Namespace(uri)
-                    // $rdf.parse(body, store, uri, mimeType)
-                    var n3Parser = $rdf.N3Parser(store, store, uri, uri, undefined, undefined, undefined, uri)
-                    n3Parser.loadBuf(body)
-                    var out = $rdf.serialize(null, store, uri, mimeType)
-                    n3OutputChannel.append(out);
+                    let doc = output.join("\n");
+   
+
+                    n3OutputChannel.append(doc);
+
+
                 } catch (e) {
                     window.showErrorMessage("Failed serializing result to output window");
                     console.error(e);

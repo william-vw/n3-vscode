@@ -1,0 +1,25 @@
+@prefix string: <http://www.w3.org/2000/10/swap/string#> .
+@prefix : <urn:>.
+@prefix dev: <urn:dev:>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#> .
+
+{ (" " ("this" "is" "a" "test" )) dev:join ?Result . } 
+=> { :result :is ?Result.} .
+
+# IMPLEMENTATION
+###################################
+{ (?Sep (?Y)) dev:join ?Y. } <= true.
+
+{ (?Sep ?List) dev:join ?Z . } <=
+{
+	?List list:firstRest (?H ?T) .
+  	(?Sep ?T) dev:join ?Sx .
+  	(?H ?Sep ?Sx) string:concatenation ?Z .
+}.
+
+# BELOW IS WHAT I AM TRYING TO IMPLEMENT
+# join(_, [H], H) :- !.
+# join(Sep, [H | T], S) :-
+#     join(Sep, T, Sx),
+#     string_concat(Sep, Sx, Sy),    
+#     string_concat(H, Sy, S).
