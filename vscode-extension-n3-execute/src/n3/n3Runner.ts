@@ -37,18 +37,21 @@ export class Runner {
                     //turn the buffer into a list of lines and then join them back together
                     let output = Buffer.concat(this._chunks).toString().split("\n")
                     let body = output.join("\n");
-                    // get the working directory for the extension
-                    let extensionPath = workspace.getConfiguration("n3").get("extensionPath");
                     
-                    const python = spawn('python3', ['format_results.py', body.toString()])
-
+                    const python = spawn('python3', ['format_results.py', body])
+                   
                     python.stdout.on('data', (data) => {
-                        //console.log(`stdout: ${data}`);
-                        n3OutputChannel.append(data.toString());
+                        this._chunks.push(data);
+
                     });
                     python.stderr.on('data', (code) => {
                         //console.log(`stderr: ${code}`);
                         window.showInformationMessage(`child process close all stdio with code ${code}`);
+                    });
+                    python.on('close', (code) => {
+                        let temp = Buffer.concat(this._chunks).toString().split("\n")
+                        let formatted = temp.join("\n");
+                        n3OutputChannel.append(formatted);
                     });
 
                 } catch (e) {
