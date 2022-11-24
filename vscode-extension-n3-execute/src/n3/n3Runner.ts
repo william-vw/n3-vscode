@@ -42,7 +42,6 @@ export class Runner {
                    
                     python.stdout.on('data', (data) => {
                         this._chunks.push(data);
-
                     });
                     python.stderr.on('data', (code) => {
                         //console.log(`stderr: ${code}`);
