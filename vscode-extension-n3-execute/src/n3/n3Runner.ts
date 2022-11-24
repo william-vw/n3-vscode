@@ -38,14 +38,13 @@ export class Runner {
                     let output = Buffer.concat(this._chunks).toString().split("\n")
                     let body = output.join("\n");
                     var uri = 'http://example.org/'
-                    var mimeType = 'text/n3'
+                    var mimeType = 'text/turtle'
                     var store = $rdf.graph()
                     var EX = $rdf.Namespace(uri)
-                    // $rdf.parse(body, store, uri, mimeType)
-                    var n3Parser = $rdf.N3Parser(store, store, uri, uri, undefined, undefined, undefined, uri)
-                    n3Parser.loadBuf(body)
+                    $rdf.parse(body, store, uri, mimeType)
                     var out = $rdf.serialize(null, store, uri, mimeType)
                     n3OutputChannel.append(out);
+
                 } catch (e) {
                     window.showErrorMessage("Failed serializing result to output window");
                     console.error(e);
