@@ -17,19 +17,17 @@ import {
 	InitializeResult,
 	CodeAction,
 	CodeActionKind,
-	CodeActionParams,
-	CodeActionContext,
-	CancellationToken,
-	Command,
-	Range
+	DocumentFormattingParams
 } from 'vscode-languageserver/node';
 
-const n3 = require('./n3Main.js');
-
 import {
-	TextDocument
+	TextDocument, TextEdit
 } from 'vscode-languageserver-textdocument';
+
+const n3 = require('./n3Main.js');
 import namespaces from './namespaces'
+import { spawnSync } from "child_process";
+import { format, resolve } from 'path';
 
 
 // Create a connection for the server, using Node's IPC as a transport.
@@ -67,7 +65,8 @@ connection.onInitialize((params: InitializeParams) => {
 			completionProvider: {
 				resolveProvider: true
 			},
-			codeActionProvider: true
+			codeActionProvider: true,
+			documentFormattingProvider: true
 		}
 	};
 	if (hasWorkspaceFolderCapability) {
@@ -159,15 +158,15 @@ connection.onCodeAction((params) => {
 
 		if (diagnostic.message.startsWith(MSG_UNKNOWN_PREFIX)) {
 			let prefix: string = diagnostic.message.substring(MSG_UNKNOWN_PREFIX.length);
-			
+
 			if (namespaces[prefix]) {
 				let ns = namespaces[prefix];
 				let directive = `@prefix ${prefix}: <${ns}> . \n`;
 
 				const codeAction: CodeAction = {
-					title: "Import namespace",
+					title: `Import ${prefix} namespace`,
 					kind: CodeActionKind.QuickFix,
-					diagnostics: [ diagnostic] ,
+					diagnostics: [diagnostic],
 					edit: {
 						changes: {
 							[params.textDocument.uri]: [{
@@ -185,34 +184,57 @@ connection.onCodeAction((params) => {
 	return codeActions;
 });
 
-async function provideCodeActions(document: TextDocument, range: Range, context: CodeActionContext, token: CancellationToken): Promise<CodeAction[]> {
-	if (!context.diagnostics.length) {
-		return new Promise((resolve, reject) => resolve([]));
-	}
+connection.onDocumentFormatting(formatDocument);
 
-	return new Promise((resolve, reject) => {
-		const codeActions: CodeAction[] = [];
+async function formatDocument(params: DocumentFormattingParams): Promise<TextEdit[]> {
+	let doc = documents.get(params.textDocument.uri)!;
 
-		for (let diagnostic of context.diagnostics) {
-			if (diagnostic.message.startsWith(MSG_UNKNOWN_PREFIX)) {
-				const codeAction: CodeAction = {
-					title: "Uppercase the keyword",
-					kind: CodeActionKind.QuickFix,
-					diagnostics: [diagnostic],
-					edit: {
-						changes: {
-							[document.uri]: [{
-								range: diagnostic.range, newText: document.getText(diagnostic.range).toUpperCase()
-							}]
-						}
-					}
-				}
-				codeActions.push(codeAction)
-			}
-		}
+	let text: string = doc.getText();
+	let formatted: string = /* await */ formatCode(text) as string;
+	// connection.console.log("formatted? " + formatted);
+	let edit: TextEdit = {
+		range: { start: { line: 0, character: 0 }, end: { line: doc.lineCount, character: 0 } },
+		newText: formatted
+	};
 
-		resolve(codeActions);
-	});
+	// connection.console.log("edit?\n" + JSON.stringify(edit, null, 4));
+	return [edit];
+}
+
+function formatCode(text: string): string {
+	const result = spawnSync('python3', ['/Users/wvw/git/n3/vscode/n3-vscode/vscode-lsp-n3/server/src/format_results.py', text]);
+	// connection.console.log("stdout: " + result.stdout);
+	return result.stdout.toString();
+
+	// return new Promise((resolve, reject) => {
+	// this works
+	// resolve("abc");
+
+	// but not this
+	// let output: string, error: string;
+	// spawn('python3', ['/Users/wvw/git/n3/vscode/n3-vscode/vscode-lsp-n3/server/src/format_results.py', text]);
+	// python.stdout.on('data', function (data) {
+	// 	// connection.console.log("data? " + data);
+	// 	output = data;
+	// });
+	// python.stderr.on('data', function (data) {
+	// 	// connection.console.log("error? " + data);
+	// 	error = data;
+	// });
+	// python.on('close', (code) => {
+	// 	connection.console.log(`child process closed with code ${code}`);
+	// 	switch (code) {
+	// 		case 0:
+	// 			connection.console.log("resolving: " + output);
+	// 			resolve(output);
+	// 			break;
+
+	// 		default:
+	// 			reject(error)
+	// 			break;
+	// 	}
+	// });
+	// });
 }
 
 async function validateTextDocument(textDocument: TextDocument): Promise<void> {
@@ -232,8 +254,8 @@ async function validateTextDocument(textDocument: TextDocument): Promise<void> {
 			syntaxError: function (recognizer: any, offendingSymbol: any,
 				line: any, column: any, msg: string, err: any) {
 
-				connection.console.log("syntaxError: " + offendingSymbol + " - " +
-					line + " - " + column + " - " + msg + " - " + err);
+				// connection.console.log("syntaxError: " + offendingSymbol + " - " +
+				// 	line + " - " + column + " - " + msg + " - " + err);
 
 				var start, end;
 				if (offendingSymbol != null) {
@@ -259,7 +281,7 @@ async function validateTextDocument(textDocument: TextDocument): Promise<void> {
 			},
 
 			unknownPrefix: function (prefix: string, pName: string, line: number, start: number, end: number) {
-				connection.console.log("unknownPrefix: " + prefix + " - " + pName + " - " + line + " - " + start + " - " + end);
+				// connection.console.log("unknownPrefix: " + prefix + " - " + pName + " - " + line + " - " + start + " - " + end);
 
 				line = line - 1; // ??
 				let startPos = { line: line, character: start }
@@ -287,6 +309,7 @@ async function validateTextDocument(textDocument: TextDocument): Promise<void> {
 			// }
 		});
 
+	connection.console.log("diagnostics?\n" + JSON.stringify(diagnostics, null, 4));
 	connection.sendDiagnostics({ uri: textDocument.uri, diagnostics });
 }
 
