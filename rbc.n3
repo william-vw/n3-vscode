@@ -1,0 +1,909 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+
+<file:///input.n3#patientA> a <file:///input.n3#AntigenContainer>.
+<file:///input.n3#bloodUnit1> a <file:///input.n3#AntigenContainer>.
+<file:///input.n3#bloodUnit2> a <file:///input.n3#AntigenContainer>.
+<file:///input.n3#c> <file:///input.n3#mutex> <file:///input.n3#C>.
+<file:///input.n3#e> <file:///input.n3#mutex> <file:///input.n3#E>.
+<file:///input.n3#Fyb> <file:///input.n3#mutex> <file:///input.n3#Fya>.
+<file:///input.n3#Jkb> <file:///input.n3#mutex> <file:///input.n3#Jka>.
+<file:///input.n3#S> <file:///input.n3#mutex> <file:///input.n3#s>.
+<file:///input.n3#N> <file:///input.n3#mutex> <file:///input.n3#M>.
+<file:///input.n3#patientA> <file:///input.n3#mismatch> _:sk_0.
+_:sk_0 <file:///input.n3#unit> <file:///input.n3#bloodUnit1>.
+_:sk_0 <file:///input.n3#antigen> <file:///input.n3#e>.
+_:sk_0 <file:///input.n3#risk> 0.255 .
+_:sk_0 <file:///input.n3#reason> _:sk_1.
+_:sk_1 a <file:///input.n3#MismatchOnAntigen>.
+_:sk_1 <file:///input.n3#patientAntigenStatus> _:bn_1.
+_:sk_1 <file:///input.n3#unitAntigenStatus> _:bn_6.
+<file:///input.n3#patientA> <file:///input.n3#mismatch> _:sk_2.
+_:sk_2 <file:///input.n3#unit> <file:///input.n3#bloodUnit2>.
+_:sk_2 <file:///input.n3#antigen> <file:///input.n3#e>.
+_:sk_2 <file:///input.n3#risk> 0.255 .
+_:sk_2 <file:///input.n3#reason> _:sk_3.
+_:sk_3 a <file:///input.n3#MismatchOnAntigen>.
+_:sk_3 <file:///input.n3#patientAntigenStatus> _:bn_1.
+_:sk_3 <file:///input.n3#unitAntigenStatus> _:bn_11.
+<file:///input.n3#patientA> <file:///input.n3#mismatch> _:sk_4.
+_:sk_4 <file:///input.n3#unit> <file:///input.n3#bloodUnit2>.
+_:sk_4 <file:///input.n3#antigen> <file:///input.n3#K>.
+_:sk_4 <file:///input.n3#risk> 1.17 .
+_:sk_4 <file:///input.n3#reason> _:sk_5.
+_:sk_5 a <file:///input.n3#MismatchOnAntigen>.
+_:sk_5 <file:///input.n3#patientAntigenStatus> _:bn_2.
+_:sk_5 <file:///input.n3#unitAntigenStatus> _:bn_12.
+<file:///input.n3#patientA> <file:///input.n3#mismatch> _:sk_6.
+_:sk_6 <file:///input.n3#unit> <file:///input.n3#bloodUnit2>.
+_:sk_6 <file:///input.n3#antigen> <file:///input.n3#Fya>.
+_:sk_6 <file:///input.n3#risk> 0.135 .
+_:sk_6 <file:///input.n3#reason> _:sk_7.
+_:sk_7 a <file:///input.n3#MismatchOnAntigen>.
+_:sk_7 <file:///input.n3#patientAntigenStatus> _:bn_3.
+_:sk_7 <file:///input.n3#unitAntigenStatus> _:bn_13.
+<file:///input.n3#patientA> <file:///input.n3#aggregatedRisk> _:sk_10.
+_:sk_10 <file:///input.n3#unit> <file:///input.n3#bloodUnit1>.
+_:sk_10 <file:///input.n3#risk> 0.255 .
+<file:///input.n3#patientA> <file:///input.n3#aggregatedRisk> _:sk_13.
+_:sk_13 <file:///input.n3#unit> <file:///input.n3#bloodUnit2>.
+_:sk_13 <file:///input.n3#risk> 1.56 .
+<file:///input.n3#patientA> <file:///input.n3#antigenStatus> _:sk_15.
+_:sk_15 <file:///input.n3#antigen> <file:///input.n3#E>.
+_:sk_15 <file:///input.n3#positive> true.
+_:sk_15 <file:///input.n3#likelihood> 1 .
+_:sk_15 <file:///input.n3#reason> _:sk_16.
+_:sk_16 a <file:///input.n3#Mutex>.
+_:sk_16 <file:///input.n3#mutexWith> <file:///input.n3#e>.
+<file:///input.n3#patientA> <file:///input.n3#antigenStatus> _:sk_18.
+_:sk_18 <file:///input.n3#antigen> <file:///input.n3#Fyb>.
+_:sk_18 <file:///input.n3#positive> true.
+_:sk_18 <file:///input.n3#likelihood> 1 .
+_:sk_18 <file:///input.n3#reason> _:sk_19.
+_:sk_19 a <file:///input.n3#Mutex>.
+_:sk_19 <file:///input.n3#mutexWith> <file:///input.n3#Fya>.
+<file:///input.n3#bloodUnit1> <file:///input.n3#antigenStatus> _:sk_21.
+_:sk_21 <file:///input.n3#antigen> <file:///input.n3#Fyb>.
+_:sk_21 <file:///input.n3#positive> true.
+_:sk_21 <file:///input.n3#likelihood> 1 .
+_:sk_21 <file:///input.n3#reason> _:sk_22.
+_:sk_22 a <file:///input.n3#Mutex>.
+_:sk_22 <file:///input.n3#mutexWith> <file:///input.n3#Fya>.
+<file:///input.n3#bloodUnit2> <file:///input.n3#antigenStatus> _:sk_24.
+_:sk_24 <file:///input.n3#antigen> <file:///input.n3#c>.
+_:sk_24 <file:///input.n3#positive> true.
+_:sk_24 <file:///input.n3#likelihood> 1 .
+_:sk_24 <file:///input.n3#reason> _:sk_25.
+_:sk_25 a <file:///input.n3#Mutex>.
+_:sk_25 <file:///input.n3#mutexWith> <file:///input.n3#C>.
+<file:///input.n3#patientA> <file:///input.n3#incidence> _:sk_28.
+_:sk_28 <file:///input.n3#antigen> <file:///input.n3#D>.
+_:sk_28 <file:///input.n3#positive> true.
+_:sk_28 <file:///input.n3#likelihood> 0.85 .
+_:sk_28 <file:///input.n3#reason> _:sk_29.
+_:sk_29 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#patientA> <file:///input.n3#incidence> _:sk_32.
+_:sk_32 <file:///input.n3#antigen> <file:///input.n3#D>.
+_:sk_32 <file:///input.n3#positive> false.
+_:sk_32 <file:///input.n3#likelihood> 0.15 .
+_:sk_32 <file:///input.n3#reason> _:sk_33.
+_:sk_33 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit2> <file:///input.n3#incidence> _:sk_36.
+_:sk_36 <file:///input.n3#antigen> <file:///input.n3#Fyb>.
+_:sk_36 <file:///input.n3#positive> true.
+_:sk_36 <file:///input.n3#likelihood> 0.83 .
+_:sk_36 <file:///input.n3#reason> _:sk_37.
+_:sk_37 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit2> <file:///input.n3#incidence> _:sk_40.
+_:sk_40 <file:///input.n3#antigen> <file:///input.n3#Fyb>.
+_:sk_40 <file:///input.n3#positive> false.
+_:sk_40 <file:///input.n3#likelihood> 0.17 .
+_:sk_40 <file:///input.n3#reason> _:sk_41.
+_:sk_41 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#patientA> <file:///input.n3#incidence> _:sk_44.
+_:sk_44 <file:///input.n3#antigen> <file:///input.n3#Jka>.
+_:sk_44 <file:///input.n3#positive> true.
+_:sk_44 <file:///input.n3#likelihood> 0.77 .
+_:sk_44 <file:///input.n3#reason> _:sk_45.
+_:sk_45 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#patientA> <file:///input.n3#incidence> _:sk_48.
+_:sk_48 <file:///input.n3#antigen> <file:///input.n3#Jka>.
+_:sk_48 <file:///input.n3#positive> false.
+_:sk_48 <file:///input.n3#likelihood> 0.23 .
+_:sk_48 <file:///input.n3#reason> _:sk_49.
+_:sk_49 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit1> <file:///input.n3#incidence> _:sk_52.
+_:sk_52 <file:///input.n3#antigen> <file:///input.n3#Jka>.
+_:sk_52 <file:///input.n3#positive> true.
+_:sk_52 <file:///input.n3#likelihood> 0.77 .
+_:sk_52 <file:///input.n3#reason> _:sk_53.
+_:sk_53 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit1> <file:///input.n3#incidence> _:sk_56.
+_:sk_56 <file:///input.n3#antigen> <file:///input.n3#Jka>.
+_:sk_56 <file:///input.n3#positive> false.
+_:sk_56 <file:///input.n3#likelihood> 0.23 .
+_:sk_56 <file:///input.n3#reason> _:sk_57.
+_:sk_57 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit2> <file:///input.n3#incidence> _:sk_60.
+_:sk_60 <file:///input.n3#antigen> <file:///input.n3#Jka>.
+_:sk_60 <file:///input.n3#positive> true.
+_:sk_60 <file:///input.n3#likelihood> 0.77 .
+_:sk_60 <file:///input.n3#reason> _:sk_61.
+_:sk_61 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit2> <file:///input.n3#incidence> _:sk_64.
+_:sk_64 <file:///input.n3#antigen> <file:///input.n3#Jka>.
+_:sk_64 <file:///input.n3#positive> false.
+_:sk_64 <file:///input.n3#likelihood> 0.23 .
+_:sk_64 <file:///input.n3#reason> _:sk_65.
+_:sk_65 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#patientA> <file:///input.n3#incidence> _:sk_68.
+_:sk_68 <file:///input.n3#antigen> <file:///input.n3#Jkb>.
+_:sk_68 <file:///input.n3#positive> true.
+_:sk_68 <file:///input.n3#likelihood> 0.72 .
+_:sk_68 <file:///input.n3#reason> _:sk_69.
+_:sk_69 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#patientA> <file:///input.n3#incidence> _:sk_72.
+_:sk_72 <file:///input.n3#antigen> <file:///input.n3#Jkb>.
+_:sk_72 <file:///input.n3#positive> false.
+_:sk_72 <file:///input.n3#likelihood> 0.28 .
+_:sk_72 <file:///input.n3#reason> _:sk_73.
+_:sk_73 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit1> <file:///input.n3#incidence> _:sk_76.
+_:sk_76 <file:///input.n3#antigen> <file:///input.n3#Jkb>.
+_:sk_76 <file:///input.n3#positive> true.
+_:sk_76 <file:///input.n3#likelihood> 0.72 .
+_:sk_76 <file:///input.n3#reason> _:sk_77.
+_:sk_77 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit1> <file:///input.n3#incidence> _:sk_80.
+_:sk_80 <file:///input.n3#antigen> <file:///input.n3#Jkb>.
+_:sk_80 <file:///input.n3#positive> false.
+_:sk_80 <file:///input.n3#likelihood> 0.28 .
+_:sk_80 <file:///input.n3#reason> _:sk_81.
+_:sk_81 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit2> <file:///input.n3#incidence> _:sk_84.
+_:sk_84 <file:///input.n3#antigen> <file:///input.n3#Jkb>.
+_:sk_84 <file:///input.n3#positive> true.
+_:sk_84 <file:///input.n3#likelihood> 0.72 .
+_:sk_84 <file:///input.n3#reason> _:sk_85.
+_:sk_85 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit2> <file:///input.n3#incidence> _:sk_88.
+_:sk_88 <file:///input.n3#antigen> <file:///input.n3#Jkb>.
+_:sk_88 <file:///input.n3#positive> false.
+_:sk_88 <file:///input.n3#likelihood> 0.28 .
+_:sk_88 <file:///input.n3#reason> _:sk_89.
+_:sk_89 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#patientA> <file:///input.n3#incidence> _:sk_92.
+_:sk_92 <file:///input.n3#antigen> <file:///input.n3#s>.
+_:sk_92 <file:///input.n3#positive> true.
+_:sk_92 <file:///input.n3#likelihood> 0.89 .
+_:sk_92 <file:///input.n3#reason> _:sk_93.
+_:sk_93 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#patientA> <file:///input.n3#incidence> _:sk_96.
+_:sk_96 <file:///input.n3#antigen> <file:///input.n3#s>.
+_:sk_96 <file:///input.n3#positive> false.
+_:sk_96 <file:///input.n3#likelihood> 0.11 .
+_:sk_96 <file:///input.n3#reason> _:sk_97.
+_:sk_97 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit1> <file:///input.n3#incidence> _:sk_100.
+_:sk_100 <file:///input.n3#antigen> <file:///input.n3#s>.
+_:sk_100 <file:///input.n3#positive> true.
+_:sk_100 <file:///input.n3#likelihood> 0.89 .
+_:sk_100 <file:///input.n3#reason> _:sk_101.
+_:sk_101 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit1> <file:///input.n3#incidence> _:sk_104.
+_:sk_104 <file:///input.n3#antigen> <file:///input.n3#s>.
+_:sk_104 <file:///input.n3#positive> false.
+_:sk_104 <file:///input.n3#likelihood> 0.11 .
+_:sk_104 <file:///input.n3#reason> _:sk_105.
+_:sk_105 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit2> <file:///input.n3#incidence> _:sk_108.
+_:sk_108 <file:///input.n3#antigen> <file:///input.n3#s>.
+_:sk_108 <file:///input.n3#positive> true.
+_:sk_108 <file:///input.n3#likelihood> 0.89 .
+_:sk_108 <file:///input.n3#reason> _:sk_109.
+_:sk_109 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit2> <file:///input.n3#incidence> _:sk_112.
+_:sk_112 <file:///input.n3#antigen> <file:///input.n3#s>.
+_:sk_112 <file:///input.n3#positive> false.
+_:sk_112 <file:///input.n3#likelihood> 0.11 .
+_:sk_112 <file:///input.n3#reason> _:sk_113.
+_:sk_113 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#patientA> <file:///input.n3#incidence> _:sk_116.
+_:sk_116 <file:///input.n3#antigen> <file:///input.n3#S>.
+_:sk_116 <file:///input.n3#positive> true.
+_:sk_116 <file:///input.n3#likelihood> 0.55 .
+_:sk_116 <file:///input.n3#reason> _:sk_117.
+_:sk_117 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#patientA> <file:///input.n3#incidence> _:sk_120.
+_:sk_120 <file:///input.n3#antigen> <file:///input.n3#S>.
+_:sk_120 <file:///input.n3#positive> false.
+_:sk_120 <file:///input.n3#likelihood> 0.45 .
+_:sk_120 <file:///input.n3#reason> _:sk_121.
+_:sk_121 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit1> <file:///input.n3#incidence> _:sk_124.
+_:sk_124 <file:///input.n3#antigen> <file:///input.n3#S>.
+_:sk_124 <file:///input.n3#positive> true.
+_:sk_124 <file:///input.n3#likelihood> 0.55 .
+_:sk_124 <file:///input.n3#reason> _:sk_125.
+_:sk_125 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit1> <file:///input.n3#incidence> _:sk_128.
+_:sk_128 <file:///input.n3#antigen> <file:///input.n3#S>.
+_:sk_128 <file:///input.n3#positive> false.
+_:sk_128 <file:///input.n3#likelihood> 0.45 .
+_:sk_128 <file:///input.n3#reason> _:sk_129.
+_:sk_129 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit2> <file:///input.n3#incidence> _:sk_132.
+_:sk_132 <file:///input.n3#antigen> <file:///input.n3#S>.
+_:sk_132 <file:///input.n3#positive> true.
+_:sk_132 <file:///input.n3#likelihood> 0.55 .
+_:sk_132 <file:///input.n3#reason> _:sk_133.
+_:sk_133 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit2> <file:///input.n3#incidence> _:sk_136.
+_:sk_136 <file:///input.n3#antigen> <file:///input.n3#S>.
+_:sk_136 <file:///input.n3#positive> false.
+_:sk_136 <file:///input.n3#likelihood> 0.45 .
+_:sk_136 <file:///input.n3#reason> _:sk_137.
+_:sk_137 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#patientA> <file:///input.n3#incidence> _:sk_140.
+_:sk_140 <file:///input.n3#antigen> <file:///input.n3#M>.
+_:sk_140 <file:///input.n3#positive> true.
+_:sk_140 <file:///input.n3#likelihood> 0.78 .
+_:sk_140 <file:///input.n3#reason> _:sk_141.
+_:sk_141 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#patientA> <file:///input.n3#incidence> _:sk_144.
+_:sk_144 <file:///input.n3#antigen> <file:///input.n3#M>.
+_:sk_144 <file:///input.n3#positive> false.
+_:sk_144 <file:///input.n3#likelihood> 0.22 .
+_:sk_144 <file:///input.n3#reason> _:sk_145.
+_:sk_145 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit1> <file:///input.n3#incidence> _:sk_148.
+_:sk_148 <file:///input.n3#antigen> <file:///input.n3#M>.
+_:sk_148 <file:///input.n3#positive> true.
+_:sk_148 <file:///input.n3#likelihood> 0.78 .
+_:sk_148 <file:///input.n3#reason> _:sk_149.
+_:sk_149 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit1> <file:///input.n3#incidence> _:sk_152.
+_:sk_152 <file:///input.n3#antigen> <file:///input.n3#M>.
+_:sk_152 <file:///input.n3#positive> false.
+_:sk_152 <file:///input.n3#likelihood> 0.22 .
+_:sk_152 <file:///input.n3#reason> _:sk_153.
+_:sk_153 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit2> <file:///input.n3#incidence> _:sk_156.
+_:sk_156 <file:///input.n3#antigen> <file:///input.n3#M>.
+_:sk_156 <file:///input.n3#positive> true.
+_:sk_156 <file:///input.n3#likelihood> 0.78 .
+_:sk_156 <file:///input.n3#reason> _:sk_157.
+_:sk_157 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit2> <file:///input.n3#incidence> _:sk_160.
+_:sk_160 <file:///input.n3#antigen> <file:///input.n3#M>.
+_:sk_160 <file:///input.n3#positive> false.
+_:sk_160 <file:///input.n3#likelihood> 0.22 .
+_:sk_160 <file:///input.n3#reason> _:sk_161.
+_:sk_161 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#patientA> <file:///input.n3#incidence> _:sk_164.
+_:sk_164 <file:///input.n3#antigen> <file:///input.n3#N>.
+_:sk_164 <file:///input.n3#positive> true.
+_:sk_164 <file:///input.n3#likelihood> 0.72 .
+_:sk_164 <file:///input.n3#reason> _:sk_165.
+_:sk_165 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#patientA> <file:///input.n3#incidence> _:sk_168.
+_:sk_168 <file:///input.n3#antigen> <file:///input.n3#N>.
+_:sk_168 <file:///input.n3#positive> false.
+_:sk_168 <file:///input.n3#likelihood> 0.28 .
+_:sk_168 <file:///input.n3#reason> _:sk_169.
+_:sk_169 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit1> <file:///input.n3#incidence> _:sk_172.
+_:sk_172 <file:///input.n3#antigen> <file:///input.n3#N>.
+_:sk_172 <file:///input.n3#positive> true.
+_:sk_172 <file:///input.n3#likelihood> 0.72 .
+_:sk_172 <file:///input.n3#reason> _:sk_173.
+_:sk_173 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit1> <file:///input.n3#incidence> _:sk_176.
+_:sk_176 <file:///input.n3#antigen> <file:///input.n3#N>.
+_:sk_176 <file:///input.n3#positive> false.
+_:sk_176 <file:///input.n3#likelihood> 0.28 .
+_:sk_176 <file:///input.n3#reason> _:sk_177.
+_:sk_177 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit2> <file:///input.n3#incidence> _:sk_180.
+_:sk_180 <file:///input.n3#antigen> <file:///input.n3#N>.
+_:sk_180 <file:///input.n3#positive> true.
+_:sk_180 <file:///input.n3#likelihood> 0.72 .
+_:sk_180 <file:///input.n3#reason> _:sk_181.
+_:sk_181 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit2> <file:///input.n3#incidence> _:sk_184.
+_:sk_184 <file:///input.n3#antigen> <file:///input.n3#N>.
+_:sk_184 <file:///input.n3#positive> false.
+_:sk_184 <file:///input.n3#likelihood> 0.28 .
+_:sk_184 <file:///input.n3#reason> _:sk_185.
+_:sk_185 a <file:///input.n3#GeneralIncidence>.
+<file:///input.n3#bloodUnit1> <file:///input.n3#incidence> _:sk_187.
+_:sk_187 <file:///input.n3#antigen> <file:///input.n3#c>.
+_:sk_187 <file:///input.n3#positive> true.
+_:sk_187 <file:///input.n3#likelihood> 0.81 .
+_:sk_187 <file:///input.n3#reason> _:sk_188.
+_:sk_188 a <file:///input.n3#PersonalizedIncidence>.
+_:sk_188 <file:///input.n3#dependsOn> _:bn_4.
+<file:///input.n3#bloodUnit1> <file:///input.n3#incidence> _:sk_190.
+_:sk_190 <file:///input.n3#antigen> <file:///input.n3#c>.
+_:sk_190 <file:///input.n3#positive> false.
+_:sk_190 <file:///input.n3#likelihood> 0.19 .
+_:sk_190 <file:///input.n3#reason> _:sk_191.
+_:sk_191 a <file:///input.n3#PersonalizedIncidence>.
+_:sk_191 <file:///input.n3#dependsOn> _:bn_4.
+<file:///input.n3#bloodUnit1> <file:///input.n3#incidence> _:sk_193.
+_:sk_193 <file:///input.n3#antigen> <file:///input.n3#E>.
+_:sk_193 <file:///input.n3#positive> true.
+_:sk_193 <file:///input.n3#likelihood> 0.43 .
+_:sk_193 <file:///input.n3#reason> _:sk_194.
+_:sk_194 a <file:///input.n3#PersonalizedIncidence>.
+_:sk_194 <file:///input.n3#dependsOn> _:bn_4.
+<file:///input.n3#bloodUnit1> <file:///input.n3#incidence> _:sk_196.
+_:sk_196 <file:///input.n3#antigen> <file:///input.n3#E>.
+_:sk_196 <file:///input.n3#positive> false.
+_:sk_196 <file:///input.n3#likelihood> 0.57 .
+_:sk_196 <file:///input.n3#reason> _:sk_197.
+_:sk_197 a <file:///input.n3#PersonalizedIncidence>.
+_:sk_197 <file:///input.n3#dependsOn> _:bn_4.
+<file:///input.n3#bloodUnit2> <file:///input.n3#incidence> _:sk_199.
+_:sk_199 <file:///input.n3#antigen> <file:///input.n3#E>.
+_:sk_199 <file:///input.n3#positive> true.
+_:sk_199 <file:///input.n3#likelihood> 0.01 .
+_:sk_199 <file:///input.n3#reason> _:sk_200.
+_:sk_200 a <file:///input.n3#PersonalizedIncidence>.
+_:sk_200 <file:///input.n3#dependsOn> _:bn_9.
+<file:///input.n3#bloodUnit2> <file:///input.n3#incidence> _:sk_202.
+_:sk_202 <file:///input.n3#antigen> <file:///input.n3#E>.
+_:sk_202 <file:///input.n3#positive> false.
+_:sk_202 <file:///input.n3#likelihood> 0.99 .
+_:sk_202 <file:///input.n3#reason> _:sk_203.
+_:sk_203 a <file:///input.n3#PersonalizedIncidence>.
+_:sk_203 <file:///input.n3#dependsOn> _:bn_9.
+<file:///input.n3#patientA> <file:///input.n3#antigenStatus> _:sk_207.
+_:sk_207 <file:///input.n3#antigen> <file:///input.n3#D>.
+_:sk_207 <file:///input.n3#positive> true.
+_:sk_207 <file:///input.n3#likelihood> 0.85 .
+_:sk_207 <file:///input.n3#reason> _:sk_208.
+_:sk_208 a <file:///input.n3#FromIncidence>.
+_:sk_208 <file:///input.n3#incidence> _:sk_28.
+<file:///input.n3#patientA> <file:///input.n3#antigenStatus> _:sk_212.
+_:sk_212 <file:///input.n3#antigen> <file:///input.n3#D>.
+_:sk_212 <file:///input.n3#positive> false.
+_:sk_212 <file:///input.n3#likelihood> 0.15 .
+_:sk_212 <file:///input.n3#reason> _:sk_213.
+_:sk_213 a <file:///input.n3#FromIncidence>.
+_:sk_213 <file:///input.n3#incidence> _:sk_32.
+<file:///input.n3#patientA> <file:///input.n3#antigenStatus> _:sk_217.
+_:sk_217 <file:///input.n3#antigen> <file:///input.n3#Jka>.
+_:sk_217 <file:///input.n3#positive> true.
+_:sk_217 <file:///input.n3#likelihood> 0.77 .
+_:sk_217 <file:///input.n3#reason> _:sk_218.
+_:sk_218 a <file:///input.n3#FromIncidence>.
+_:sk_218 <file:///input.n3#incidence> _:sk_44.
+<file:///input.n3#patientA> <file:///input.n3#antigenStatus> _:sk_222.
+_:sk_222 <file:///input.n3#antigen> <file:///input.n3#Jka>.
+_:sk_222 <file:///input.n3#positive> false.
+_:sk_222 <file:///input.n3#likelihood> 0.23 .
+_:sk_222 <file:///input.n3#reason> _:sk_223.
+_:sk_223 a <file:///input.n3#FromIncidence>.
+_:sk_223 <file:///input.n3#incidence> _:sk_48.
+<file:///input.n3#patientA> <file:///input.n3#antigenStatus> _:sk_227.
+_:sk_227 <file:///input.n3#antigen> <file:///input.n3#Jkb>.
+_:sk_227 <file:///input.n3#positive> true.
+_:sk_227 <file:///input.n3#likelihood> 0.72 .
+_:sk_227 <file:///input.n3#reason> _:sk_228.
+_:sk_228 a <file:///input.n3#FromIncidence>.
+_:sk_228 <file:///input.n3#incidence> _:sk_68.
+<file:///input.n3#patientA> <file:///input.n3#antigenStatus> _:sk_232.
+_:sk_232 <file:///input.n3#antigen> <file:///input.n3#Jkb>.
+_:sk_232 <file:///input.n3#positive> false.
+_:sk_232 <file:///input.n3#likelihood> 0.28 .
+_:sk_232 <file:///input.n3#reason> _:sk_233.
+_:sk_233 a <file:///input.n3#FromIncidence>.
+_:sk_233 <file:///input.n3#incidence> _:sk_72.
+<file:///input.n3#patientA> <file:///input.n3#antigenStatus> _:sk_237.
+_:sk_237 <file:///input.n3#antigen> <file:///input.n3#s>.
+_:sk_237 <file:///input.n3#positive> true.
+_:sk_237 <file:///input.n3#likelihood> 0.89 .
+_:sk_237 <file:///input.n3#reason> _:sk_238.
+_:sk_238 a <file:///input.n3#FromIncidence>.
+_:sk_238 <file:///input.n3#incidence> _:sk_92.
+<file:///input.n3#patientA> <file:///input.n3#antigenStatus> _:sk_242.
+_:sk_242 <file:///input.n3#antigen> <file:///input.n3#s>.
+_:sk_242 <file:///input.n3#positive> false.
+_:sk_242 <file:///input.n3#likelihood> 0.11 .
+_:sk_242 <file:///input.n3#reason> _:sk_243.
+_:sk_243 a <file:///input.n3#FromIncidence>.
+_:sk_243 <file:///input.n3#incidence> _:sk_96.
+<file:///input.n3#patientA> <file:///input.n3#antigenStatus> _:sk_247.
+_:sk_247 <file:///input.n3#antigen> <file:///input.n3#S>.
+_:sk_247 <file:///input.n3#positive> true.
+_:sk_247 <file:///input.n3#likelihood> 0.55 .
+_:sk_247 <file:///input.n3#reason> _:sk_248.
+_:sk_248 a <file:///input.n3#FromIncidence>.
+_:sk_248 <file:///input.n3#incidence> _:sk_116.
+<file:///input.n3#patientA> <file:///input.n3#antigenStatus> _:sk_252.
+_:sk_252 <file:///input.n3#antigen> <file:///input.n3#S>.
+_:sk_252 <file:///input.n3#positive> false.
+_:sk_252 <file:///input.n3#likelihood> 0.45 .
+_:sk_252 <file:///input.n3#reason> _:sk_253.
+_:sk_253 a <file:///input.n3#FromIncidence>.
+_:sk_253 <file:///input.n3#incidence> _:sk_120.
+<file:///input.n3#patientA> <file:///input.n3#antigenStatus> _:sk_257.
+_:sk_257 <file:///input.n3#antigen> <file:///input.n3#M>.
+_:sk_257 <file:///input.n3#positive> true.
+_:sk_257 <file:///input.n3#likelihood> 0.78 .
+_:sk_257 <file:///input.n3#reason> _:sk_258.
+_:sk_258 a <file:///input.n3#FromIncidence>.
+_:sk_258 <file:///input.n3#incidence> _:sk_140.
+<file:///input.n3#patientA> <file:///input.n3#antigenStatus> _:sk_262.
+_:sk_262 <file:///input.n3#antigen> <file:///input.n3#M>.
+_:sk_262 <file:///input.n3#positive> false.
+_:sk_262 <file:///input.n3#likelihood> 0.22 .
+_:sk_262 <file:///input.n3#reason> _:sk_263.
+_:sk_263 a <file:///input.n3#FromIncidence>.
+_:sk_263 <file:///input.n3#incidence> _:sk_144.
+<file:///input.n3#patientA> <file:///input.n3#antigenStatus> _:sk_267.
+_:sk_267 <file:///input.n3#antigen> <file:///input.n3#N>.
+_:sk_267 <file:///input.n3#positive> true.
+_:sk_267 <file:///input.n3#likelihood> 0.72 .
+_:sk_267 <file:///input.n3#reason> _:sk_268.
+_:sk_268 a <file:///input.n3#FromIncidence>.
+_:sk_268 <file:///input.n3#incidence> _:sk_164.
+<file:///input.n3#patientA> <file:///input.n3#antigenStatus> _:sk_272.
+_:sk_272 <file:///input.n3#antigen> <file:///input.n3#N>.
+_:sk_272 <file:///input.n3#positive> false.
+_:sk_272 <file:///input.n3#likelihood> 0.28 .
+_:sk_272 <file:///input.n3#reason> _:sk_273.
+_:sk_273 a <file:///input.n3#FromIncidence>.
+_:sk_273 <file:///input.n3#incidence> _:sk_168.
+<file:///input.n3#bloodUnit1> <file:///input.n3#antigenStatus> _:sk_277.
+_:sk_277 <file:///input.n3#antigen> <file:///input.n3#c>.
+_:sk_277 <file:///input.n3#positive> true.
+_:sk_277 <file:///input.n3#likelihood> 0.81 .
+_:sk_277 <file:///input.n3#reason> _:sk_278.
+_:sk_278 a <file:///input.n3#FromIncidence>.
+_:sk_278 <file:///input.n3#incidence> _:sk_187.
+<file:///input.n3#bloodUnit1> <file:///input.n3#antigenStatus> _:sk_282.
+_:sk_282 <file:///input.n3#antigen> <file:///input.n3#c>.
+_:sk_282 <file:///input.n3#positive> false.
+_:sk_282 <file:///input.n3#likelihood> 0.19 .
+_:sk_282 <file:///input.n3#reason> _:sk_283.
+_:sk_283 a <file:///input.n3#FromIncidence>.
+_:sk_283 <file:///input.n3#incidence> _:sk_190.
+<file:///input.n3#bloodUnit1> <file:///input.n3#antigenStatus> _:sk_287.
+_:sk_287 <file:///input.n3#antigen> <file:///input.n3#E>.
+_:sk_287 <file:///input.n3#positive> true.
+_:sk_287 <file:///input.n3#likelihood> 0.43 .
+_:sk_287 <file:///input.n3#reason> _:sk_288.
+_:sk_288 a <file:///input.n3#FromIncidence>.
+_:sk_288 <file:///input.n3#incidence> _:sk_193.
+<file:///input.n3#bloodUnit1> <file:///input.n3#antigenStatus> _:sk_292.
+_:sk_292 <file:///input.n3#antigen> <file:///input.n3#E>.
+_:sk_292 <file:///input.n3#positive> false.
+_:sk_292 <file:///input.n3#likelihood> 0.57 .
+_:sk_292 <file:///input.n3#reason> _:sk_293.
+_:sk_293 a <file:///input.n3#FromIncidence>.
+_:sk_293 <file:///input.n3#incidence> _:sk_196.
+<file:///input.n3#bloodUnit1> <file:///input.n3#antigenStatus> _:sk_297.
+_:sk_297 <file:///input.n3#antigen> <file:///input.n3#Jka>.
+_:sk_297 <file:///input.n3#positive> true.
+_:sk_297 <file:///input.n3#likelihood> 0.77 .
+_:sk_297 <file:///input.n3#reason> _:sk_298.
+_:sk_298 a <file:///input.n3#FromIncidence>.
+_:sk_298 <file:///input.n3#incidence> _:sk_52.
+<file:///input.n3#bloodUnit1> <file:///input.n3#antigenStatus> _:sk_302.
+_:sk_302 <file:///input.n3#antigen> <file:///input.n3#Jka>.
+_:sk_302 <file:///input.n3#positive> false.
+_:sk_302 <file:///input.n3#likelihood> 0.23 .
+_:sk_302 <file:///input.n3#reason> _:sk_303.
+_:sk_303 a <file:///input.n3#FromIncidence>.
+_:sk_303 <file:///input.n3#incidence> _:sk_56.
+<file:///input.n3#bloodUnit1> <file:///input.n3#antigenStatus> _:sk_307.
+_:sk_307 <file:///input.n3#antigen> <file:///input.n3#Jkb>.
+_:sk_307 <file:///input.n3#positive> true.
+_:sk_307 <file:///input.n3#likelihood> 0.72 .
+_:sk_307 <file:///input.n3#reason> _:sk_308.
+_:sk_308 a <file:///input.n3#FromIncidence>.
+_:sk_308 <file:///input.n3#incidence> _:sk_76.
+<file:///input.n3#bloodUnit1> <file:///input.n3#antigenStatus> _:sk_312.
+_:sk_312 <file:///input.n3#antigen> <file:///input.n3#Jkb>.
+_:sk_312 <file:///input.n3#positive> false.
+_:sk_312 <file:///input.n3#likelihood> 0.28 .
+_:sk_312 <file:///input.n3#reason> _:sk_313.
+_:sk_313 a <file:///input.n3#FromIncidence>.
+_:sk_313 <file:///input.n3#incidence> _:sk_80.
+<file:///input.n3#bloodUnit1> <file:///input.n3#antigenStatus> _:sk_317.
+_:sk_317 <file:///input.n3#antigen> <file:///input.n3#s>.
+_:sk_317 <file:///input.n3#positive> true.
+_:sk_317 <file:///input.n3#likelihood> 0.89 .
+_:sk_317 <file:///input.n3#reason> _:sk_318.
+_:sk_318 a <file:///input.n3#FromIncidence>.
+_:sk_318 <file:///input.n3#incidence> _:sk_100.
+<file:///input.n3#bloodUnit1> <file:///input.n3#antigenStatus> _:sk_322.
+_:sk_322 <file:///input.n3#antigen> <file:///input.n3#s>.
+_:sk_322 <file:///input.n3#positive> false.
+_:sk_322 <file:///input.n3#likelihood> 0.11 .
+_:sk_322 <file:///input.n3#reason> _:sk_323.
+_:sk_323 a <file:///input.n3#FromIncidence>.
+_:sk_323 <file:///input.n3#incidence> _:sk_104.
+<file:///input.n3#bloodUnit1> <file:///input.n3#antigenStatus> _:sk_327.
+_:sk_327 <file:///input.n3#antigen> <file:///input.n3#S>.
+_:sk_327 <file:///input.n3#positive> true.
+_:sk_327 <file:///input.n3#likelihood> 0.55 .
+_:sk_327 <file:///input.n3#reason> _:sk_328.
+_:sk_328 a <file:///input.n3#FromIncidence>.
+_:sk_328 <file:///input.n3#incidence> _:sk_124.
+<file:///input.n3#bloodUnit1> <file:///input.n3#antigenStatus> _:sk_332.
+_:sk_332 <file:///input.n3#antigen> <file:///input.n3#S>.
+_:sk_332 <file:///input.n3#positive> false.
+_:sk_332 <file:///input.n3#likelihood> 0.45 .
+_:sk_332 <file:///input.n3#reason> _:sk_333.
+_:sk_333 a <file:///input.n3#FromIncidence>.
+_:sk_333 <file:///input.n3#incidence> _:sk_128.
+<file:///input.n3#bloodUnit1> <file:///input.n3#antigenStatus> _:sk_337.
+_:sk_337 <file:///input.n3#antigen> <file:///input.n3#M>.
+_:sk_337 <file:///input.n3#positive> true.
+_:sk_337 <file:///input.n3#likelihood> 0.78 .
+_:sk_337 <file:///input.n3#reason> _:sk_338.
+_:sk_338 a <file:///input.n3#FromIncidence>.
+_:sk_338 <file:///input.n3#incidence> _:sk_148.
+<file:///input.n3#bloodUnit1> <file:///input.n3#antigenStatus> _:sk_342.
+_:sk_342 <file:///input.n3#antigen> <file:///input.n3#M>.
+_:sk_342 <file:///input.n3#positive> false.
+_:sk_342 <file:///input.n3#likelihood> 0.22 .
+_:sk_342 <file:///input.n3#reason> _:sk_343.
+_:sk_343 a <file:///input.n3#FromIncidence>.
+_:sk_343 <file:///input.n3#incidence> _:sk_152.
+<file:///input.n3#bloodUnit1> <file:///input.n3#antigenStatus> _:sk_347.
+_:sk_347 <file:///input.n3#antigen> <file:///input.n3#N>.
+_:sk_347 <file:///input.n3#positive> true.
+_:sk_347 <file:///input.n3#likelihood> 0.72 .
+_:sk_347 <file:///input.n3#reason> _:sk_348.
+_:sk_348 a <file:///input.n3#FromIncidence>.
+_:sk_348 <file:///input.n3#incidence> _:sk_172.
+<file:///input.n3#bloodUnit1> <file:///input.n3#antigenStatus> _:sk_352.
+_:sk_352 <file:///input.n3#antigen> <file:///input.n3#N>.
+_:sk_352 <file:///input.n3#positive> false.
+_:sk_352 <file:///input.n3#likelihood> 0.28 .
+_:sk_352 <file:///input.n3#reason> _:sk_353.
+_:sk_353 a <file:///input.n3#FromIncidence>.
+_:sk_353 <file:///input.n3#incidence> _:sk_176.
+<file:///input.n3#bloodUnit2> <file:///input.n3#antigenStatus> _:sk_357.
+_:sk_357 <file:///input.n3#antigen> <file:///input.n3#E>.
+_:sk_357 <file:///input.n3#positive> true.
+_:sk_357 <file:///input.n3#likelihood> 0.01 .
+_:sk_357 <file:///input.n3#reason> _:sk_358.
+_:sk_358 a <file:///input.n3#FromIncidence>.
+_:sk_358 <file:///input.n3#incidence> _:sk_199.
+<file:///input.n3#bloodUnit2> <file:///input.n3#antigenStatus> _:sk_362.
+_:sk_362 <file:///input.n3#antigen> <file:///input.n3#E>.
+_:sk_362 <file:///input.n3#positive> false.
+_:sk_362 <file:///input.n3#likelihood> 0.99 .
+_:sk_362 <file:///input.n3#reason> _:sk_363.
+_:sk_363 a <file:///input.n3#FromIncidence>.
+_:sk_363 <file:///input.n3#incidence> _:sk_202.
+<file:///input.n3#bloodUnit2> <file:///input.n3#antigenStatus> _:sk_367.
+_:sk_367 <file:///input.n3#antigen> <file:///input.n3#Fyb>.
+_:sk_367 <file:///input.n3#positive> true.
+_:sk_367 <file:///input.n3#likelihood> 0.83 .
+_:sk_367 <file:///input.n3#reason> _:sk_368.
+_:sk_368 a <file:///input.n3#FromIncidence>.
+_:sk_368 <file:///input.n3#incidence> _:sk_36.
+<file:///input.n3#bloodUnit2> <file:///input.n3#antigenStatus> _:sk_372.
+_:sk_372 <file:///input.n3#antigen> <file:///input.n3#Fyb>.
+_:sk_372 <file:///input.n3#positive> false.
+_:sk_372 <file:///input.n3#likelihood> 0.17 .
+_:sk_372 <file:///input.n3#reason> _:sk_373.
+_:sk_373 a <file:///input.n3#FromIncidence>.
+_:sk_373 <file:///input.n3#incidence> _:sk_40.
+<file:///input.n3#bloodUnit2> <file:///input.n3#antigenStatus> _:sk_377.
+_:sk_377 <file:///input.n3#antigen> <file:///input.n3#Jka>.
+_:sk_377 <file:///input.n3#positive> true.
+_:sk_377 <file:///input.n3#likelihood> 0.77 .
+_:sk_377 <file:///input.n3#reason> _:sk_378.
+_:sk_378 a <file:///input.n3#FromIncidence>.
+_:sk_378 <file:///input.n3#incidence> _:sk_60.
+<file:///input.n3#bloodUnit2> <file:///input.n3#antigenStatus> _:sk_382.
+_:sk_382 <file:///input.n3#antigen> <file:///input.n3#Jka>.
+_:sk_382 <file:///input.n3#positive> false.
+_:sk_382 <file:///input.n3#likelihood> 0.23 .
+_:sk_382 <file:///input.n3#reason> _:sk_383.
+_:sk_383 a <file:///input.n3#FromIncidence>.
+_:sk_383 <file:///input.n3#incidence> _:sk_64.
+<file:///input.n3#bloodUnit2> <file:///input.n3#antigenStatus> _:sk_387.
+_:sk_387 <file:///input.n3#antigen> <file:///input.n3#Jkb>.
+_:sk_387 <file:///input.n3#positive> true.
+_:sk_387 <file:///input.n3#likelihood> 0.72 .
+_:sk_387 <file:///input.n3#reason> _:sk_388.
+_:sk_388 a <file:///input.n3#FromIncidence>.
+_:sk_388 <file:///input.n3#incidence> _:sk_84.
+<file:///input.n3#bloodUnit2> <file:///input.n3#antigenStatus> _:sk_392.
+_:sk_392 <file:///input.n3#antigen> <file:///input.n3#Jkb>.
+_:sk_392 <file:///input.n3#positive> false.
+_:sk_392 <file:///input.n3#likelihood> 0.28 .
+_:sk_392 <file:///input.n3#reason> _:sk_393.
+_:sk_393 a <file:///input.n3#FromIncidence>.
+_:sk_393 <file:///input.n3#incidence> _:sk_88.
+<file:///input.n3#bloodUnit2> <file:///input.n3#antigenStatus> _:sk_397.
+_:sk_397 <file:///input.n3#antigen> <file:///input.n3#s>.
+_:sk_397 <file:///input.n3#positive> true.
+_:sk_397 <file:///input.n3#likelihood> 0.89 .
+_:sk_397 <file:///input.n3#reason> _:sk_398.
+_:sk_398 a <file:///input.n3#FromIncidence>.
+_:sk_398 <file:///input.n3#incidence> _:sk_108.
+<file:///input.n3#bloodUnit2> <file:///input.n3#antigenStatus> _:sk_402.
+_:sk_402 <file:///input.n3#antigen> <file:///input.n3#s>.
+_:sk_402 <file:///input.n3#positive> false.
+_:sk_402 <file:///input.n3#likelihood> 0.11 .
+_:sk_402 <file:///input.n3#reason> _:sk_403.
+_:sk_403 a <file:///input.n3#FromIncidence>.
+_:sk_403 <file:///input.n3#incidence> _:sk_112.
+<file:///input.n3#bloodUnit2> <file:///input.n3#antigenStatus> _:sk_407.
+_:sk_407 <file:///input.n3#antigen> <file:///input.n3#S>.
+_:sk_407 <file:///input.n3#positive> true.
+_:sk_407 <file:///input.n3#likelihood> 0.55 .
+_:sk_407 <file:///input.n3#reason> _:sk_408.
+_:sk_408 a <file:///input.n3#FromIncidence>.
+_:sk_408 <file:///input.n3#incidence> _:sk_132.
+<file:///input.n3#bloodUnit2> <file:///input.n3#antigenStatus> _:sk_412.
+_:sk_412 <file:///input.n3#antigen> <file:///input.n3#S>.
+_:sk_412 <file:///input.n3#positive> false.
+_:sk_412 <file:///input.n3#likelihood> 0.45 .
+_:sk_412 <file:///input.n3#reason> _:sk_413.
+_:sk_413 a <file:///input.n3#FromIncidence>.
+_:sk_413 <file:///input.n3#incidence> _:sk_136.
+<file:///input.n3#bloodUnit2> <file:///input.n3#antigenStatus> _:sk_417.
+_:sk_417 <file:///input.n3#antigen> <file:///input.n3#M>.
+_:sk_417 <file:///input.n3#positive> true.
+_:sk_417 <file:///input.n3#likelihood> 0.78 .
+_:sk_417 <file:///input.n3#reason> _:sk_418.
+_:sk_418 a <file:///input.n3#FromIncidence>.
+_:sk_418 <file:///input.n3#incidence> _:sk_156.
+<file:///input.n3#bloodUnit2> <file:///input.n3#antigenStatus> _:sk_422.
+_:sk_422 <file:///input.n3#antigen> <file:///input.n3#M>.
+_:sk_422 <file:///input.n3#positive> false.
+_:sk_422 <file:///input.n3#likelihood> 0.22 .
+_:sk_422 <file:///input.n3#reason> _:sk_423.
+_:sk_423 a <file:///input.n3#FromIncidence>.
+_:sk_423 <file:///input.n3#incidence> _:sk_160.
+<file:///input.n3#bloodUnit2> <file:///input.n3#antigenStatus> _:sk_427.
+_:sk_427 <file:///input.n3#antigen> <file:///input.n3#N>.
+_:sk_427 <file:///input.n3#positive> true.
+_:sk_427 <file:///input.n3#likelihood> 0.72 .
+_:sk_427 <file:///input.n3#reason> _:sk_428.
+_:sk_428 a <file:///input.n3#FromIncidence>.
+_:sk_428 <file:///input.n3#incidence> _:sk_180.
+<file:///input.n3#bloodUnit2> <file:///input.n3#antigenStatus> _:sk_432.
+_:sk_432 <file:///input.n3#antigen> <file:///input.n3#N>.
+_:sk_432 <file:///input.n3#positive> false.
+_:sk_432 <file:///input.n3#likelihood> 0.28 .
+_:sk_432 <file:///input.n3#reason> _:sk_433.
+_:sk_433 a <file:///input.n3#FromIncidence>.
+_:sk_433 <file:///input.n3#incidence> _:sk_184.
+<file:///input.n3#patientA> <file:///input.n3#incidence> _:sk_435.
+_:sk_435 <file:///input.n3#antigen> <file:///input.n3#C>.
+_:sk_435 <file:///input.n3#positive> true.
+_:sk_435 <file:///input.n3#likelihood> 0.5780000000000001 .
+_:sk_435 <file:///input.n3#reason> _:sk_436.
+_:sk_436 a <file:///input.n3#PersonalizedIncidence>.
+_:sk_436 <file:///input.n3#dependsOn> _:sk_207.
+<file:///input.n3#patientA> <file:///input.n3#incidence> _:sk_438.
+_:sk_438 <file:///input.n3#antigen> <file:///input.n3#C>.
+_:sk_438 <file:///input.n3#positive> true.
+_:sk_438 <file:///input.n3#likelihood> 0.003 .
+_:sk_438 <file:///input.n3#reason> _:sk_439.
+_:sk_439 a <file:///input.n3#PersonalizedIncidence>.
+_:sk_439 <file:///input.n3#dependsOn> _:sk_212.
+<file:///input.n3#patientA> <file:///input.n3#incidence> _:sk_441.
+_:sk_441 <file:///input.n3#antigen> <file:///input.n3#C>.
+_:sk_441 <file:///input.n3#positive> false.
+_:sk_441 <file:///input.n3#likelihood> 0.272 .
+_:sk_441 <file:///input.n3#reason> _:sk_442.
+_:sk_442 a <file:///input.n3#PersonalizedIncidence>.
+_:sk_442 <file:///input.n3#dependsOn> _:sk_207.
+<file:///input.n3#patientA> <file:///input.n3#incidence> _:sk_444.
+_:sk_444 <file:///input.n3#antigen> <file:///input.n3#C>.
+_:sk_444 <file:///input.n3#positive> false.
+_:sk_444 <file:///input.n3#likelihood> 0.147 .
+_:sk_444 <file:///input.n3#reason> _:sk_445.
+_:sk_445 a <file:///input.n3#PersonalizedIncidence>.
+_:sk_445 <file:///input.n3#dependsOn> _:sk_212.
+<file:///input.n3#patientA> <file:///input.n3#incidence> _:sk_447.
+_:sk_447 <file:///input.n3#antigen> <file:///input.n3#c>.
+_:sk_447 <file:///input.n3#positive> true.
+_:sk_447 <file:///input.n3#likelihood> 0.6885 .
+_:sk_447 <file:///input.n3#reason> _:sk_448.
+_:sk_448 a <file:///input.n3#PersonalizedIncidence>.
+_:sk_448 <file:///input.n3#dependsOn> _:sk_207.
+<file:///input.n3#patientA> <file:///input.n3#incidence> _:sk_450.
+_:sk_450 <file:///input.n3#antigen> <file:///input.n3#c>.
+_:sk_450 <file:///input.n3#positive> true.
+_:sk_450 <file:///input.n3#likelihood> 0.147 .
+_:sk_450 <file:///input.n3#reason> _:sk_451.
+_:sk_451 a <file:///input.n3#PersonalizedIncidence>.
+_:sk_451 <file:///input.n3#dependsOn> _:sk_212.
+<file:///input.n3#patientA> <file:///input.n3#incidence> _:sk_453.
+_:sk_453 <file:///input.n3#antigen> <file:///input.n3#c>.
+_:sk_453 <file:///input.n3#positive> false.
+_:sk_453 <file:///input.n3#likelihood> 0.1615 .
+_:sk_453 <file:///input.n3#reason> _:sk_454.
+_:sk_454 a <file:///input.n3#PersonalizedIncidence>.
+_:sk_454 <file:///input.n3#dependsOn> _:sk_207.
+<file:///input.n3#patientA> <file:///input.n3#incidence> _:sk_456.
+_:sk_456 <file:///input.n3#antigen> <file:///input.n3#c>.
+_:sk_456 <file:///input.n3#positive> false.
+_:sk_456 <file:///input.n3#likelihood> 0.003 .
+_:sk_456 <file:///input.n3#reason> _:sk_457.
+_:sk_457 a <file:///input.n3#PersonalizedIncidence>.
+_:sk_457 <file:///input.n3#dependsOn> _:sk_212.
+<file:///input.n3#patientA> <file:///input.n3#mismatch> _:sk_458.
+_:sk_458 <file:///input.n3#unit> <file:///input.n3#bloodUnit1>.
+_:sk_458 <file:///input.n3#antigen> <file:///input.n3#D>.
+_:sk_458 <file:///input.n3#risk> 3.9 .
+_:sk_458 <file:///input.n3#reason> _:sk_459.
+_:sk_459 a <file:///input.n3#MismatchOnAntigen>.
+_:sk_459 <file:///input.n3#patientAntigenStatus> _:sk_212.
+_:sk_459 <file:///input.n3#unitAntigenStatus> _:bn_4.
+<file:///input.n3#patientA> <file:///input.n3#mismatch> _:sk_460.
+_:sk_460 <file:///input.n3#unit> <file:///input.n3#bloodUnit1>.
+_:sk_460 <file:///input.n3#antigen> <file:///input.n3#Jka>.
+_:sk_460 <file:///input.n3#risk> 0.03984750000000001 .
+_:sk_460 <file:///input.n3#reason> _:sk_461.
+_:sk_461 a <file:///input.n3#MismatchOnAntigen>.
+_:sk_461 <file:///input.n3#patientAntigenStatus> _:sk_222.
+_:sk_461 <file:///input.n3#unitAntigenStatus> _:sk_297.
+<file:///input.n3#patientA> <file:///input.n3#mismatch> _:sk_462.
+_:sk_462 <file:///input.n3#unit> <file:///input.n3#bloodUnit2>.
+_:sk_462 <file:///input.n3#antigen> <file:///input.n3#Jka>.
+_:sk_462 <file:///input.n3#risk> 0.03984750000000001 .
+_:sk_462 <file:///input.n3#reason> _:sk_463.
+_:sk_463 a <file:///input.n3#MismatchOnAntigen>.
+_:sk_463 <file:///input.n3#patientAntigenStatus> _:sk_222.
+_:sk_463 <file:///input.n3#unitAntigenStatus> _:sk_377.
+<file:///input.n3#patientA> <file:///input.n3#mismatch> _:sk_464.
+_:sk_464 <file:///input.n3#unit> <file:///input.n3#bloodUnit1>.
+_:sk_464 <file:///input.n3#antigen> <file:///input.n3#Jkb>.
+_:sk_464 <file:///input.n3#risk> 0.002016 .
+_:sk_464 <file:///input.n3#reason> _:sk_465.
+_:sk_465 a <file:///input.n3#MismatchOnAntigen>.
+_:sk_465 <file:///input.n3#patientAntigenStatus> _:sk_232.
+_:sk_465 <file:///input.n3#unitAntigenStatus> _:sk_307.
+<file:///input.n3#patientA> <file:///input.n3#mismatch> _:sk_466.
+_:sk_466 <file:///input.n3#unit> <file:///input.n3#bloodUnit2>.
+_:sk_466 <file:///input.n3#antigen> <file:///input.n3#Jkb>.
+_:sk_466 <file:///input.n3#risk> 0.002016 .
+_:sk_466 <file:///input.n3#reason> _:sk_467.
+_:sk_467 a <file:///input.n3#MismatchOnAntigen>.
+_:sk_467 <file:///input.n3#patientAntigenStatus> _:sk_232.
+_:sk_467 <file:///input.n3#unitAntigenStatus> _:sk_387.
+<file:///input.n3#patientA> <file:///input.n3#mismatch> _:sk_468.
+_:sk_468 <file:///input.n3#unit> <file:///input.n3#bloodUnit1>.
+_:sk_468 <file:///input.n3#antigen> <file:///input.n3#s>.
+_:sk_468 <file:///input.n3#risk> 0.000979 .
+_:sk_468 <file:///input.n3#reason> _:sk_469.
+_:sk_469 a <file:///input.n3#MismatchOnAntigen>.
+_:sk_469 <file:///input.n3#patientAntigenStatus> _:sk_242.
+_:sk_469 <file:///input.n3#unitAntigenStatus> _:sk_317.
+<file:///input.n3#patientA> <file:///input.n3#mismatch> _:sk_470.
+_:sk_470 <file:///input.n3#unit> <file:///input.n3#bloodUnit2>.
+_:sk_470 <file:///input.n3#antigen> <file:///input.n3#s>.
+_:sk_470 <file:///input.n3#risk> 0.000979 .
+_:sk_470 <file:///input.n3#reason> _:sk_471.
+_:sk_471 a <file:///input.n3#MismatchOnAntigen>.
+_:sk_471 <file:///input.n3#patientAntigenStatus> _:sk_242.
+_:sk_471 <file:///input.n3#unitAntigenStatus> _:sk_397.
+<file:///input.n3#patientA> <file:///input.n3#mismatch> _:sk_472.
+_:sk_472 <file:///input.n3#unit> <file:///input.n3#bloodUnit1>.
+_:sk_472 <file:///input.n3#antigen> <file:///input.n3#S>.
+_:sk_472 <file:///input.n3#risk> 0.0099 .
+_:sk_472 <file:///input.n3#reason> _:sk_473.
+_:sk_473 a <file:///input.n3#MismatchOnAntigen>.
+_:sk_473 <file:///input.n3#patientAntigenStatus> _:sk_252.
+_:sk_473 <file:///input.n3#unitAntigenStatus> _:sk_327.
+<file:///input.n3#patientA> <file:///input.n3#mismatch> _:sk_474.
+_:sk_474 <file:///input.n3#unit> <file:///input.n3#bloodUnit2>.
+_:sk_474 <file:///input.n3#antigen> <file:///input.n3#S>.
+_:sk_474 <file:///input.n3#risk> 0.0099 .
+_:sk_474 <file:///input.n3#reason> _:sk_475.
+_:sk_475 a <file:///input.n3#MismatchOnAntigen>.
+_:sk_475 <file:///input.n3#patientAntigenStatus> _:sk_252.
+_:sk_475 <file:///input.n3#unitAntigenStatus> _:sk_407.
+<file:///input.n3#patientA> <file:///input.n3#mismatch> _:sk_476.
+_:sk_476 <file:///input.n3#unit> <file:///input.n3#bloodUnit1>.
+_:sk_476 <file:///input.n3#antigen> <file:///input.n3#M>.
+_:sk_476 <file:///input.n3#risk> 0.015444 .
+_:sk_476 <file:///input.n3#reason> _:sk_477.
+_:sk_477 a <file:///input.n3#MismatchOnAntigen>.
+_:sk_477 <file:///input.n3#patientAntigenStatus> _:sk_262.
+_:sk_477 <file:///input.n3#unitAntigenStatus> _:sk_337.
+<file:///input.n3#patientA> <file:///input.n3#mismatch> _:sk_478.
+_:sk_478 <file:///input.n3#unit> <file:///input.n3#bloodUnit2>.
+_:sk_478 <file:///input.n3#antigen> <file:///input.n3#M>.
+_:sk_478 <file:///input.n3#risk> 0.015444 .
+_:sk_478 <file:///input.n3#reason> _:sk_479.
+_:sk_479 a <file:///input.n3#MismatchOnAntigen>.
+_:sk_479 <file:///input.n3#patientAntigenStatus> _:sk_262.
+_:sk_479 <file:///input.n3#unitAntigenStatus> _:sk_417.
+<file:///input.n3#patientA> <file:///input.n3#mismatch> _:sk_480.
+_:sk_480 <file:///input.n3#unit> <file:///input.n3#bloodUnit1>.
+_:sk_480 <file:///input.n3#antigen> <file:///input.n3#N>.
+_:sk_480 <file:///input.n3#risk> 0.002016 .
+_:sk_480 <file:///input.n3#reason> _:sk_481.
+_:sk_481 a <file:///input.n3#MismatchOnAntigen>.
+_:sk_481 <file:///input.n3#patientAntigenStatus> _:sk_272.
+_:sk_481 <file:///input.n3#unitAntigenStatus> _:sk_347.
+<file:///input.n3#patientA> <file:///input.n3#mismatch> _:sk_482.
+_:sk_482 <file:///input.n3#unit> <file:///input.n3#bloodUnit2>.
+_:sk_482 <file:///input.n3#antigen> <file:///input.n3#N>.
+_:sk_482 <file:///input.n3#risk> 0.002016 .
+_:sk_482 <file:///input.n3#reason> _:sk_483.
+_:sk_483 a <file:///input.n3#MismatchOnAntigen>.
+_:sk_483 <file:///input.n3#patientAntigenStatus> _:sk_272.
+_:sk_483 <file:///input.n3#unitAntigenStatus> _:sk_427.
+<file:///input.n3#patientA> <file:///input.n3#antigenStatus> _:sk_487.
+_:sk_487 <file:///input.n3#antigen> <file:///input.n3#C>.
+_:sk_487 <file:///input.n3#positive> true.
+_:sk_487 <file:///input.n3#likelihood> 0.5780000000000001 .
+_:sk_487 <file:///input.n3#reason> _:sk_488.
+_:sk_488 a <file:///input.n3#FromIncidence>.
+_:sk_488 <file:///input.n3#incidence> _:sk_435.
+<file:///input.n3#patientA> <file:///input.n3#antigenStatus> _:sk_492.
+_:sk_492 <file:///input.n3#antigen> <file:///input.n3#C>.
+_:sk_492 <file:///input.n3#positive> false.
+_:sk_492 <file:///input.n3#likelihood> 0.272 .
+_:sk_492 <file:///input.n3#reason> _:sk_493.
+_:sk_493 a <file:///input.n3#FromIncidence>.
+_:sk_493 <file:///input.n3#incidence> _:sk_441.
+<file:///input.n3#patientA> <file:///input.n3#antigenStatus> _:sk_497.
+_:sk_497 <file:///input.n3#antigen> <file:///input.n3#c>.
+_:sk_497 <file:///input.n3#positive> true.
+_:sk_497 <file:///input.n3#likelihood> 0.6885 .
+_:sk_497 <file:///input.n3#reason> _:sk_498.
+_:sk_498 a <file:///input.n3#FromIncidence>.
+_:sk_498 <file:///input.n3#incidence> _:sk_447.
+<file:///input.n3#patientA> <file:///input.n3#antigenStatus> _:sk_502.
+_:sk_502 <file:///input.n3#antigen> <file:///input.n3#c>.
+_:sk_502 <file:///input.n3#positive> false.
+_:sk_502 <file:///input.n3#likelihood> 0.1615 .
+_:sk_502 <file:///input.n3#reason> _:sk_503.
+_:sk_503 a <file:///input.n3#FromIncidence>.
+_:sk_503 <file:///input.n3#incidence> _:sk_453.
+<file:///input.n3#patientA> <file:///input.n3#aggregatedRisk> _:sk_506.
+_:sk_506 <file:///input.n3#unit> <file:///input.n3#bloodUnit1>.
+_:sk_506 <file:///input.n3#risk> 4.2252025 .
+<file:///input.n3#patientA> <file:///input.n3#aggregatedRisk> _:sk_509.
+_:sk_509 <file:///input.n3#unit> <file:///input.n3#bloodUnit2>.
+_:sk_509 <file:///input.n3#risk> 1.6302024999999998 .
+<file:///input.n3#patientA> <file:///input.n3#mismatch> _:sk_510.
+_:sk_510 <file:///input.n3#unit> <file:///input.n3#bloodUnit1>.
+_:sk_510 <file:///input.n3#antigen> <file:///input.n3#C>.
+_:sk_510 <file:///input.n3#risk> 0.028560000000000002 .
+_:sk_510 <file:///input.n3#reason> _:sk_511.
+_:sk_511 a <file:///input.n3#MismatchOnAntigen>.
+_:sk_511 <file:///input.n3#patientAntigenStatus> _:sk_492.
+_:sk_511 <file:///input.n3#unitAntigenStatus> _:bn_5.
+<file:///input.n3#patientA> <file:///input.n3#mismatch> _:sk_512.
+_:sk_512 <file:///input.n3#unit> <file:///input.n3#bloodUnit1>.
+_:sk_512 <file:///input.n3#antigen> <file:///input.n3#c>.
+_:sk_512 <file:///input.n3#risk> 0.028125225 .
+_:sk_512 <file:///input.n3#reason> _:sk_513.
+_:sk_513 a <file:///input.n3#MismatchOnAntigen>.
+_:sk_513 <file:///input.n3#patientAntigenStatus> _:sk_502.
+_:sk_513 <file:///input.n3#unitAntigenStatus> _:sk_277.
+<file:///input.n3#patientA> <file:///input.n3#mismatch> _:sk_514.
+_:sk_514 <file:///input.n3#unit> <file:///input.n3#bloodUnit2>.
+_:sk_514 <file:///input.n3#antigen> <file:///input.n3#c>.
+_:sk_514 <file:///input.n3#risk> 0.0347225 .
+_:sk_514 <file:///input.n3#reason> _:sk_515.
+_:sk_515 a <file:///input.n3#MismatchOnAntigen>.
+_:sk_515 <file:///input.n3#patientAntigenStatus> _:sk_502.
+_:sk_515 <file:///input.n3#unitAntigenStatus> _:sk_24.
+<file:///input.n3#patientA> <file:///input.n3#aggregatedRisk> _:sk_518.
+_:sk_518 <file:///input.n3#unit> <file:///input.n3#bloodUnit1>.
+_:sk_518 <file:///input.n3#risk> 4.281887725 .
+<file:///input.n3#patientA> <file:///input.n3#aggregatedRisk> _:sk_521.
+_:sk_521 <file:///input.n3#unit> <file:///input.n3#bloodUnit2>.
+_:sk_521 <file:///input.n3#risk> 1.6649249999999998 .

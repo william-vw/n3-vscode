@@ -7,11 +7,13 @@ import * as path from 'path';
 import { workspace, ExtensionContext } from 'vscode';
 
 import {
+	ConnectionError,
 	LanguageClient,
 	LanguageClientOptions,
 	ServerOptions,
 	TransportKind
 } from 'vscode-languageclient/node';
+import * as vscode from 'vscode';
 
 let client: LanguageClient;
 

@@ -14,7 +14,14 @@ import {
 	CompletionItemKind,
 	TextDocumentPositionParams,
 	TextDocumentSyncKind,
-	InitializeResult
+	InitializeResult,
+	CodeAction,
+	CodeActionKind,
+	CodeActionParams,
+	CodeActionContext,
+	CancellationToken,
+	Command,
+	Range
 } from 'vscode-languageserver/node';
 
 const n3 = require('./n3Main.js');
@@ -22,7 +29,8 @@ const n3 = require('./n3Main.js');
 import {
 	TextDocument
 } from 'vscode-languageserver-textdocument';
-import { connect } from 'http2';
+import namespaces from './namespaces'
+
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -58,7 +66,8 @@ connection.onInitialize((params: InitializeParams) => {
 			// Tell the client that this server supports code completion.
 			completionProvider: {
 				resolveProvider: true
-			}
+			},
+			codeActionProvider: true
 		}
 	};
 	if (hasWorkspaceFolderCapability) {
@@ -137,22 +146,95 @@ documents.onDidChangeContent(change => {
 	validateTextDocument(change.document);
 });
 
+const MSG_UNKNOWN_PREFIX = "Unknown prefix: ";
+
+connection.onCodeAction((params) => {
+	// connection.console.log("params? " + JSON.stringify(params, null, 4));
+
+	let diagnostics = params.context.diagnostics;
+
+	let codeActions: CodeAction[] = [];
+	for (let diagnostic of diagnostics) {
+		// connection.console.log("diagn? " + JSON.stringify(diagnostic, null, 4));
+
+		if (diagnostic.message.startsWith(MSG_UNKNOWN_PREFIX)) {
+			let prefix: string = diagnostic.message.substring(MSG_UNKNOWN_PREFIX.length);
+			
+			if (namespaces[prefix]) {
+				let ns = namespaces[prefix];
+				let directive = `@prefix ${prefix}: <${ns}> . \n`;
+
+				const codeAction: CodeAction = {
+					title: "Import namespace",
+					kind: CodeActionKind.QuickFix,
+					diagnostics: [ diagnostic] ,
+					edit: {
+						changes: {
+							[params.textDocument.uri]: [{
+								range: { start: { line: 0, character: 0 }, end: { line: 0, character: 0 } },
+								newText: directive
+							}]
+						}
+					}
+				}
+
+				codeActions.push(codeAction);
+			}
+		}
+	}
+	return codeActions;
+});
+
+async function provideCodeActions(document: TextDocument, range: Range, context: CodeActionContext, token: CancellationToken): Promise<CodeAction[]> {
+	if (!context.diagnostics.length) {
+		return new Promise((resolve, reject) => resolve([]));
+	}
+
+	return new Promise((resolve, reject) => {
+		const codeActions: CodeAction[] = [];
+
+		for (let diagnostic of context.diagnostics) {
+			if (diagnostic.message.startsWith(MSG_UNKNOWN_PREFIX)) {
+				const codeAction: CodeAction = {
+					title: "Uppercase the keyword",
+					kind: CodeActionKind.QuickFix,
+					diagnostics: [diagnostic],
+					edit: {
+						changes: {
+							[document.uri]: [{
+								range: diagnostic.range, newText: document.getText(diagnostic.range).toUpperCase()
+							}]
+						}
+					}
+				}
+				codeActions.push(codeAction)
+			}
+		}
+
+		resolve(codeActions);
+	});
+}
+
 async function validateTextDocument(textDocument: TextDocument): Promise<void> {
 	// In this simple example we get the settings for every validate run.
-	const settings = await getDocumentSettings(textDocument.uri);
+	// const settings = await getDocumentSettings(textDocument.uri);
 
 	const text = textDocument.getText();
 
-	let problems = 0;
+	// TODO take into account maxProblems
+	// settings.maxNumberOfProblems
+	// let problems = 0;
+
 	const diagnostics: Diagnostic[] = [];
+
 	n3.parse(text,
 		{
-			syntaxError: function (recognizer:any, offendingSymbol:any,
-				line:any, column:any, msg:string, err:any) {
+			syntaxError: function (recognizer: any, offendingSymbol: any,
+				line: any, column: any, msg: string, err: any) {
 
-				connection.console.log("syntaxError: " + offendingSymbol + " - " + 
+				connection.console.log("syntaxError: " + offendingSymbol + " - " +
 					line + " - " + column + " - " + msg + " - " + err);
-				
+
 				var start, end;
 				if (offendingSymbol != null) {
 					// see Token class in n3Main.js
@@ -175,50 +257,36 @@ async function validateTextDocument(textDocument: TextDocument): Promise<void> {
 
 				diagnostics.push(diagnostic);
 			},
-			unknownPrefix: function (prefix:string, pName:string, line:string, start:string, end:string) {
-				connection.console.log("unknownPrefix" + prefix + pName + line + start + end);
+
+			unknownPrefix: function (prefix: string, pName: string, line: number, start: number, end: number) {
+				connection.console.log("unknownPrefix: " + prefix + " - " + pName + " - " + line + " - " + start + " - " + end);
+
+				line = line - 1; // ??
+				let startPos = { line: line, character: start }
+				let endPos = { line: line, character: start }
+
+				let msg = MSG_UNKNOWN_PREFIX + prefix;
+				const diagnostic: Diagnostic = {
+					severity: DiagnosticSeverity.Error,
+					range: {
+						start: startPos,
+						end: endPos
+					},
+					message: msg,
+					source: 'n3'
+				};
+				diagnostics.push(diagnostic);
 			},
-			consoleError: function (type:string, line:string, start:string, end:string, msg:string) {
-				connection.console.log("consoleError" + type + line + start + end + msg);
+
+			consoleError: function (type: string, line: string, start: string, end: string, msg: string) {
+				connection.console.log("consoleError" + type + " - " + line + " - " + start + " - " + end + " - " + msg);
 			}
+
 			// newAstLine: function(line:string) {
 			// 	connection.console.log("ast" + line);
 			// }
 		});
 
-	// while ((m = pattern.exec(text)) && problems < settings.maxNumberOfProblems) {
-	// 	problems++;
-	// 	const diagnostic: Diagnostic = {
-	// 		severity: DiagnosticSeverity.Warning,
-	// 		range: {
-	// 			start: textDocument.positionAt(m.index),
-	// 			end: textDocument.positionAt(m.index + m[0].length)
-	// 		},
-	// 		message: `${m[0]} is all uppercase.`,
-	// 		source: 'ex'
-	// 	};
-	// 	if (hasDiagnosticRelatedInformationCapability) {
-	// 		diagnostic.relatedInformation = [
-	// 			{
-	// 				location: {
-	// 					uri: textDocument.uri,
-	// 					range: Object.assign({}, diagnostic.range)
-	// 				},
-	// 				message: 'Spelling matters'
-	// 			},
-	// 			{
-	// 				location: {
-	// 					uri: textDocument.uri,
-	// 					range: Object.assign({}, diagnostic.range)
-	// 				},
-	// 				message: 'Particularly for names'
-	// 			}
-	// 		];
-	// 	}
-	// diagnostics.push(diagnostic);
-	// }
-
-	// Send the computed diagnostics to VSCode.
 	connection.sendDiagnostics({ uri: textDocument.uri, diagnostics });
 }
 
