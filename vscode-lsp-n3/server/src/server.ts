@@ -190,21 +190,36 @@ async function formatDocument(params: DocumentFormattingParams): Promise<TextEdi
 	let doc = documents.get(params.textDocument.uri)!;
 
 	let text: string = doc.getText();
-	let formatted: string = /* await */ formatCode(text) as string;
-	// connection.console.log("formatted? " + formatted);
-	let edit: TextEdit = {
-		range: { start: { line: 0, character: 0 }, end: { line: doc.lineCount, character: 0 } },
-		newText: formatted
-	};
+	let formatted: string | undefined = /* await */ formatCode(text);
 
-	// connection.console.log("edit?\n" + JSON.stringify(edit, null, 4));
-	return [edit];
+	if (formatted) {
+		// connection.console.log("formatted? " + formatted);
+		let edit: TextEdit = {
+			range: { start: { line: 0, character: 0 }, end: { line: doc.lineCount, character: 0 } },
+			newText: formatted
+		};
+
+		// connection.console.log("edit?\n" + JSON.stringify(edit, null, 4));
+		return [edit];
+
+	} else
+		return [];
 }
 
-function formatCode(text: string): string {
-	const result = spawnSync('python3', ['/Users/wvw/git/n3/vscode/n3-vscode/vscode-lsp-n3/server/src/format_results.py', text]);
+function formatCode(text: string): string | undefined {
+	// const result = spawnSync('python3', ['/Users/wvw/git/n3/vscode/n3-vscode/vscode-lsp-n3/server/src/format_results.py', text]);
+	const result = spawnSync('python3', ['format_results.py', text]);
+
 	// connection.console.log("stdout: " + result.stdout);
-	return result.stdout.toString();
+	switch (result.status) {
+
+		case 0:
+			return result.stdout.toString();
+
+		default:
+			connection.console.error(result.stderr.toString());
+			break;
+	}
 
 	// return new Promise((resolve, reject) => {
 	// this works
