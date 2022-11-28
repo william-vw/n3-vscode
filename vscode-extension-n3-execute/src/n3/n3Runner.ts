@@ -3,8 +3,8 @@ import {ViewColumn, window, workspace} from "vscode";
 import {n3OutputChannel} from "./n3OutputChannel";
 import {join} from "path";
 
-import $rdf = require('rdflib');
-const store = $rdf.graph()
+// import $rdf = require('rdflib');
+// const store = $rdf.graph()
 
 export class Runner {
 
