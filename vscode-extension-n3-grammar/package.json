@@ -1,7 +1,7 @@
 {
   "name": "n3",
-  "displayName": "n3-grammar",
-  "description": "n3 grammar",
+  "displayName": "vscode-extension-n3-grammar",
+  "description": "N3 grammar",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.73.0"
