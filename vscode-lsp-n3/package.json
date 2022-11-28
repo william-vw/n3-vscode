@@ -23,16 +23,16 @@
 	"contributes": {
 		"languages": [
 			{
-			  "id": "n3",
-			  "extensions": [
-				".n3"
-			  ],
-			  "aliases": [
-				"n3",
-				"N3"
-			  ]
+				"id": "n3",
+				"extensions": [
+					".n3"
+				],
+				"aliases": [
+					"n3",
+					"N3"
+				]
 			}
-		  ],
+		],
 		"configuration": {
 			"type": "object",
 			"title": "Example configuration",
@@ -73,5 +73,9 @@
 		"eslint": "^8.26.0",
 		"mocha": "^9.2.1",
 		"typescript": "^4.8.4"
+	},
+	"dependencies": {
+		"python-shell": "^3.0.1",
+		"should": "^13.2.3"
 	}
 }
