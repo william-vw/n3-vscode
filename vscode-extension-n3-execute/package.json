@@ -41,19 +41,6 @@
 				"title": "Execute N3 Rule",
 				"category": "N3"
 			}
-		],
-		"languages": [
-			{
-				"id": "N3",
-				"extensions": [ ".n3" ]
-			}
-		],
-		"grammars": [
-			{
-				"language": "N3",
-				"scopeName": "source.n3",
-				"path": "./syntaxes/n3.tmLanguage.json"
-			}
 		]
 	},
 	"scripts": {
