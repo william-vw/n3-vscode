@@ -10,7 +10,7 @@
     { "include": "#prefix" },
     { "include": "#comment" },
     { "include": "#iriref" },
-    { "include": "#prefixed-name" },
+    { "include": "#qname" },
     { "include": "#quickVar" },
     { "include": "#specialPredicates" },
     { "include": "#specialPredicates2" },
@@ -26,15 +26,15 @@
   "uuid": "230498230498sdfkj8909-34df-23dfs",
   "repository": {
     "prefix": {
-      "name": "keyword.operator.n3",
+      "name": "keyword.operator.ns.n3",
       "match": "(?i:@?base|@?prefix)\\s"
     },
     "iriref": {
-      "name": "entity.name.type.iriref.n3",
+      "name": "entity.name.iriref.n3",
       "match": "<[^\\x20-\\x20<>\"{}|^`\\\\]*>"
     },
-    "prefixed-name": {
-      "name": "constant.complex.n3",
+    "qname": {
+      "name": "constant.other.qname.n3",
       "match": "(\\w*:)(\\w*)",
       "captures": {
         "1": {
@@ -46,11 +46,11 @@
       }
     },
     "quickVar": {
-      "name": "variable.other",
+      "name": "variable.parameter.quickVar.n3",
       "match": "\\?(\\w*)",
       "captures": {
         "1": {
-          "name": "support.variable.PN_LOCAL.n3"
+          "name": "variable.parameter.PN_LOCAL.n3"
         }
       }
     },
@@ -63,19 +63,19 @@
       "match": "\\s(a)|(=)\\s",
       "captures": {
         "1":{
-          "name": "keyword.control.type" 
+          "name": "keyword.control.type.n3" 
         },
         "2":{
-          "name": "keyword.control.equiv"
+          "name": "keyword.control.equiv.n3"
         }
       }
     },
     "specialPredicates2": {
-      "name": "meta.specialPredicate.n3",
+      "name": "keyword.control.arrow.n3",
       "match": "(<=|=>)",
       "captures": {
         "1":{
-          "name": "keyword.control.rule" 
+          "name": "keyword.control.arrow.n3" 
         }
       }
     },
@@ -220,7 +220,7 @@
       "match": "\\d+"
     },
     "boolean": {
-      "name": "constant.language.sparql",
+      "name": "constant.language.n3",
       "match": "\\b(?i:true|false)\\b"
     },
     "datatype": {
@@ -254,7 +254,7 @@
           { "include": "#prefix" },
           { "include": "#comment" },
           { "include": "#iriref" },
-          { "include": "#prefixed-name" },
+          { "include": "#qname" },
           { "include": "#quickVar" },
           { "include": "#specialPredicates" },
           { "include": "#specialPredicates2" },
@@ -285,7 +285,7 @@
         "patterns" : [
             { "include": "#comment" },
             { "include": "#iriref" },
-            { "include": "#prefixed-name" },
+            { "include": "#qname" },
             { "include": "#quickVar" },
             { "include": "#datatype" },
             { "include": "#literals" },
@@ -312,7 +312,7 @@
       "patterns" : [
         { "include": "#comment" },
         { "include": "#iriref" },
-        { "include": "#prefixed-name" },
+        { "include": "#qname" },
         { "include": "#quickVar" },
         { "include": "#specialPredicates" },
         { "include": "#specialPredicates2" },

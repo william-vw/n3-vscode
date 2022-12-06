@@ -25,7 +25,7 @@ import {
 } from 'vscode-languageserver-textdocument';
 
 const n3 = require('./n3Main.js');
-import * as should from 'should';
+// import * as should from 'should';
 import namespaces from './namespaces'
 import { spawnSync } from "child_process";
 import { format, join, resolve } from 'path';
@@ -208,32 +208,31 @@ async function formatDocument(params: DocumentFormattingParams): Promise<TextEdi
 		return [];
 }
 
-function formatCode(text: string): string | string {
-	// const result = spawnSync('python3', ['/Users/wvw/git/n3/vscode/n3-vscode/vscode-lsp-n3/server/src/format_results.py', text]);
+function formatCode(text: string) {
+	const result = spawnSync('python3', 
+		['/Users/wvw/git/n3/vscode/n3-vscode/vscode-lsp-n3/server/src/format_results.py', text]);
 	//const result = spawnSync('python3', ['format_results.py', text]);
 	
-	it('should be able to execute a string of python code', function (done) {
-		PythonShell.runString('print("hello");print("world")', undefined, function (err, results) {
-			if (err) return done(err);
-			results.should.be.an.Array().and.have.lengthOf(2);
-			results.should.eql(['hello', 'world']);
-			done();
-		});
-	});
-		
-	return "success";
+	// it('should be able to execute a string of python code', function (done) {
+	// 	PythonShell.runString('print("hello");print("world")', undefined, function (err, results) {
+	// 		if (err) return done(err);
+	// 		results.should.be.an.Array().and.have.lengthOf(2);
+	// 		results.should.eql(['hello', 'world']);
+	// 		done();
+	// 	});
+	// });
+	// return "success";
 
+	// connection.console.log("stdout: " + result.stdout);
+	switch (result.status) {
 
-	// // connection.console.log("stdout: " + result.stdout);
-	// switch (result.status) {
+		case 0:
+			return result.stdout.toString();
 
-	// 	case 0:
-	// 		return result.stdout.toString();
-
-	// 	default:
-	// 		connection.console.error(result.stderr.toString());
-	// 		break;
-	// }
+		default:
+			connection.console.error(result.stderr.toString());
+			return undefined;
+	}
 
 	// return new Promise((resolve, reject) => {
 	// this works

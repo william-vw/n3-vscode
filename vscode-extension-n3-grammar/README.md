@@ -1,3 +1,11 @@
+Add the following to settings.json for bracket colors ... cannot be set in color themes, apparently.
+
+"editor.bracketPairColorization.enabled": true,
+"workbench.colorCustomizations": {
+    "editorBracketHighlight.foreground1": "#a80097",
+    "editorBracketHighlight.unexpectedBracket.foreground": "#a80097"
+}
+
 # n3 README
 
 This is the README for your extension "n3". After writing up a brief description, we recommend including the following sections.

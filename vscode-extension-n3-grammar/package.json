@@ -10,16 +10,32 @@
     "Programming Languages"
   ],
   "contributes": {
-    "languages": [{
-      "id": "n3",
-      "aliases": ["Notation3", "n3"],
-      "extensions": [".n3"],
-      "configuration": "./language-configuration.json"
-    }],
-    "grammars": [{
-      "language": "n3",
-      "scopeName": "source.n3",
-      "path": "./syntaxes/n3.tmLanguage.json"
-    }]
+    "languages": [
+      {
+        "id": "n3",
+        "aliases": [
+          "Notation3",
+          "n3"
+        ],
+        "extensions": [
+          ".n3"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "n3",
+        "scopeName": "source.n3",
+        "path": "./syntaxes/n3.tmLanguage.json"
+      }
+    ],
+    "themes": [
+      {
+        "label": "Notation3",
+        "uiTheme": "vs",
+        "path": "./themes/n3-color-theme.json"
+      }
+    ]
   }
 }
